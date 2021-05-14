@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
 
 body {
     min-height: 100vh;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Poppins', sans-serif;
     overflow-x: hidden;
 
     ::-webkit-scrollbar {
