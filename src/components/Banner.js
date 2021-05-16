@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 function Banner() {
+  const [removeBtn, setRemoveBtn] = useState(false);
+
+  const removeBtnHandler = () => {
+    setRemoveBtn(true);
+  };
+
   return (
-    <Container>
-      <Button>x</Button>
+    <Container style={removeBtn ? { display: "none" } : {}}>
+      <Button onClick={removeBtnHandler}>x</Button>
       <p>
         Free shipping on all orders <Line>/</Line> This weekend only{" "}
         <Line>/</Line>
@@ -29,6 +35,7 @@ const Button = styled.div`
   position: absolute;
   top: 13%;
   right: 1.1%;
+  cursor: pointer;
 `;
 
 const Line = styled.span`

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Navigation from "../global/Navigation";
 import Banner from "./Banner";
-import Hero from "./Hero";
+import Hero from "./HeroSection/Hero";
 
 function Header() {
   return (

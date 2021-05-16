@@ -23,7 +23,9 @@ function Navigation() {
   }, [window.scrollY]);
 
   return (
-    <Container style={fixedNav ? { position: "fixed", opacity: 0.8 } : null}>
+    <Container
+      style={fixedNav ? { position: "fixed", opacity: 0.8, top: 0 } : null}
+    >
       <SearchBox>
         <SearchBtn />
         <Input type="search" placeholder="Search items......" />
@@ -43,7 +45,7 @@ function Navigation() {
 
 const Container = styled.div`
   width: 100%;
-  height: 12vh;
+  height: 11vh;
   padding: 0 5rem;
   background: ${(props) => props.theme.colors.navigation};
   color: ${(props) => props.theme.colors.secondary};
@@ -103,7 +105,7 @@ const ProductsBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 5rem;
+  margin-right: 5vw;
 `;
 
 const Products = styled.div`
@@ -118,7 +120,7 @@ const BorderBottom = styled.div`
   height: 0.2rem;
   width: 10%;
   background: ${(props) => props.theme.colors.third};
-  box-shadow: 0 -2px 30px 4px ${(props) => props.theme.colors.third};
+  box-shadow: 0 -2px 20px 4px ${(props) => props.theme.colors.third};
 `;
 
 const SearchBox = styled.div`
@@ -167,6 +169,7 @@ const Input = styled.input`
   &::placeholder {
     color: ${(props) => props.theme.colors.secondary};
     font-family: "Rhodium Libre", serif;
+    font-size: 1rem;
     opacity: 0.4;
   }
 `;
