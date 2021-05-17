@@ -18,21 +18,20 @@ function Hero() {
 
 const Container = styled.div`
   height: 85vh;
-  background: red;
   display: grid;
   grid-template-columns:
-    [left-start] minmax(30rem, 65rem) [left-end right-start] minmax(20rem, 1fr)
+    [left-start] minmax(30rem, 70rem) [left-end right-start] minmax(30rem, 1fr)
     [right-end];
 `;
 
 const GridLeft = styled.div`
   height: 85vh;
-  background: pink;
+  background: #000;
   grid-column: left-start / left-end;
+  position: relative;
 `;
 
 const GridRight = styled.div`
-  background: orange;
   height: 85vh;
   grid-column: right-start / right-end;
 `;

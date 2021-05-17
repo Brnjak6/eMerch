@@ -14,6 +14,7 @@ export const lightTheme = {
     main: "#191919",
     secondary: "#E5E5E5",
     third: "#70D0EF",
+    hsl: "linear-gradient(hsla(0, 0%, 0%, 0), hsla(0, 0%, 0%, 1) 25%, hsla(0, 0%, 0%, 1))",
     background: "DBDBDB",
     navigation: "#151515",
     footer: "#DEDEDE",

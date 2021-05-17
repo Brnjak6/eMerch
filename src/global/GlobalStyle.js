@@ -11,12 +11,28 @@ const GlobalStyle = createGlobalStyle`
 
 body {
     min-height: 100vh;
-    font-family: 'Poppins', sans-serif;
+   font-family: "Rhodium Libre", serif;
     overflow-x: hidden;
 
     ::-webkit-scrollbar {
   width: 10px;
 
+}
+
+button {
+  padding: .3rem .3rem;
+  color: ${(props) => props.theme.colors.secondary};
+  background: transparent !important;
+  outline: none;
+  border: 5px double ${(props) => props.theme.colors.secondary};
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all .2s;
+
+  &:hover {
+    background: #fff !important;
+    color: ${(props) => props.theme.colors.main};
+  }
 }
 
 ::-webkit-scrollbar-track {
@@ -31,6 +47,11 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: ${(props) => props.theme.colors.main};
 }
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
 
 }`;
 

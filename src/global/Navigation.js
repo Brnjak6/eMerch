@@ -1,11 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { ReactComponent as Search } from "../img/search.svg";
 import { ReactComponent as Cart } from "../img/shopping-cart.svg";
 import { ReactComponent as Arrow } from "../img/down-arrow.svg";
+import { InputSearchContext } from "../components/InputSearchContext";
 
 function Navigation() {
   const [fixedNav, setfixedNav] = useState(false);
+  const [input, setInput] = useState("");
+  const [inputData, setInputData] = useContext(InputSearchContext);
+  let history = useHistory();
+
+  const encodedSearch = encodeURIComponent(
+    `https://openapi.etsy.com/v2/listings/active?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images&keywords=${input}&limit=15`
+  );
+  const url = `https://api.allorigins.win/get?url=${encodedSearch}`;
 
   useEffect(() => {
     const changeBackground = () => {
@@ -22,13 +32,35 @@ function Navigation() {
     };
   }, [window.scrollY]);
 
+  const inputHandler = (e) => {
+    setInput(e.target.value);
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.contents) {
+          setInputData(JSON.parse(data.contents));
+        }
+      })
+      .catch(console.error);
+    history.push("/search");
+  };
+
   return (
     <Container
       style={fixedNav ? { position: "fixed", opacity: 0.8, top: 0 } : null}
     >
       <SearchBox>
-        <SearchBtn />
-        <Input type="search" placeholder="Search items......" />
+        <SearchBtn onClick={submitHandler} />
+        <Input
+          type="search"
+          placeholder="Search items......"
+          onChange={inputHandler}
+          value={input}
+        />
       </SearchBox>
       <Title>Widicy</Title>
       <RightItems>
@@ -54,7 +86,6 @@ const Container = styled.div`
   align-items: center;
   position: relative;
   border-bottom: 2px solid ${(props) => props.theme.colors.third};
-  font-family: "Rhodium Libre", serif;
 `;
 
 const RightItems = styled.div`
