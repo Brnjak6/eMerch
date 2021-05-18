@@ -29,6 +29,7 @@ const Container = styled.div`
   justify-content: center;
   font-weight: lighter;
   font-size: 0.9rem;
+  top: 0%;
 `;
 
 const Button = styled.div`

@@ -39,7 +39,6 @@ function Products() {
         }
       })
       .catch(console.error);
-    console.log(contents2);
 
     fetch(url3)
       .then((response) => response.json())
@@ -95,12 +94,24 @@ const Product = styled.div`
   width: 85%;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 0 8px;
 `;
 
 const Img = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+`;
+
+const ArrowSvg = styled(Arrow)`
+  position: absolute;
+  bottom: 93%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 2rem;
+  height: 2rem;
+  fill: ${(props) => props.theme.colors.secondary};
+  transform: rotate(180deg);
 `;
 
 const Info = styled.div`
@@ -117,28 +128,21 @@ const Info = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  transition: all 0.6s;
+  transition: 0.6s;
   animation: cubic-bezier(0.06, 0.92, 0.83, 0.67);
 
   &:hover {
     top: 50%;
+    ${ArrowSvg} {
+      transform: rotate(360deg);
+      transition: 0.3s;
+    }
   }
 `;
 
 const Description = styled.div`
   margin-top: 1rem;
   margin-bottom: 15%;
-`;
-
-const ArrowSvg = styled(Arrow)`
-  position: absolute;
-  bottom: 93%;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  width: 2rem;
-  height: 2rem;
-  fill: ${(props) => props.theme.colors.secondary};
-  transform: rotate(180deg);
 `;
 
 export default Products;

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ReactComponent as Search } from "../img/search.svg";
 import { ReactComponent as Cart } from "../img/shopping-cart.svg";
@@ -13,7 +14,7 @@ function Navigation() {
   let history = useHistory();
 
   const encodedSearch = encodeURIComponent(
-    `https://openapi.etsy.com/v2/listings/active?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images&keywords=${input}&limit=15`
+    `https://openapi.etsy.com/v2/listings/active?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images&keywords=${input}&limit=20`
   );
   const url = `https://api.allorigins.win/get?url=${encodedSearch}`;
 
@@ -47,22 +48,32 @@ function Navigation() {
       })
       .catch(console.error);
     history.push("/search");
+    console.log(inputData);
+  };
+
+  const returnToMain = () => {
+    setInput("");
+    setInputData("");
+    window.scroll({ top: 0, behavior: "smooth" });
   };
 
   return (
     <Container
       style={fixedNav ? { position: "fixed", opacity: 0.8, top: 0 } : null}
     >
-      <SearchBox>
+      <SearchBox onSubmit={submitHandler}>
         <SearchBtn onClick={submitHandler} />
         <Input
           type="search"
           placeholder="Search items......"
           onChange={inputHandler}
           value={input}
+          onClick={() => setInput("")}
         />
       </SearchBox>
-      <Title>Widicy</Title>
+      <Title to="/" onClick={returnToMain}>
+        Widicy
+      </Title>
       <RightItems>
         <ProductsBox>
           <Products>Products</Products>
@@ -76,6 +87,7 @@ function Navigation() {
 }
 
 const Container = styled.div`
+  z-index: 200;
   width: 100%;
   height: 11vh;
   padding: 0 5rem;
@@ -86,6 +98,11 @@ const Container = styled.div`
   align-items: center;
   position: relative;
   border-bottom: 2px solid ${(props) => props.theme.colors.third};
+
+  &:hover {
+    opacity: 1 !important;
+    transition: 0.2s;
+  }
 `;
 
 const RightItems = styled.div`
@@ -120,7 +137,7 @@ const SearchBtn = styled(Search)`
   cursor: pointer;
 `;
 
-const Title = styled.div`
+const Title = styled(Link)`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -128,6 +145,8 @@ const Title = styled.div`
   font-size: 2.5rem;
   letter-spacing: 0.25rem;
   font-family: "Rhodium Libre", serif;
+  text-decoration: none;
+  color: ${(props) => props.theme.colors.third};
 `;
 
 const ProductsBox = styled.div`
@@ -154,7 +173,7 @@ const BorderBottom = styled.div`
   box-shadow: 0 -2px 20px 4px ${(props) => props.theme.colors.third};
 `;
 
-const SearchBox = styled.div`
+const SearchBox = styled.form`
   width: 11%;
   height: 6vh;
   position: relative;

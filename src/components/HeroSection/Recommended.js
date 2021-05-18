@@ -107,11 +107,11 @@ const Img = styled.img`
 
 const InfoContainer = styled.div`
   position: absolute;
-  bottom: -30%;
+  bottom: 0%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0%);
   z-index: 50;
-  height: 40vh;
+  height: 35vh;
   width: 100%;
   z-index: 25;
   color: ${(props) => props.theme.colors.secondary};
@@ -120,6 +120,7 @@ const InfoContainer = styled.div`
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column;
+  overflow: hidden;
 `;
 
 const Overlay = styled.div`

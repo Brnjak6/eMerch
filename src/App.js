@@ -5,6 +5,8 @@ import { SearchProvider } from "./components/InputSearchContext";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "./global/Theme";
 import Main from "./pages/Main";
+import Navigation from "./global/Navigation";
+import Banner from "./components/Banner";
 import SearchPage from "./pages/SearchPage";
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
     <ThemeProvider theme={theme === "dark" ? darkTheme : lightTheme}>
       <GlobalStyle />
       <SearchProvider>
+        <Banner />
+        <Navigation />
         <Switch>
           <Route path="/" exact>
             <Main />
