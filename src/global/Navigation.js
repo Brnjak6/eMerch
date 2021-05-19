@@ -14,7 +14,7 @@ function Navigation() {
   let history = useHistory();
 
   const encodedSearch = encodeURIComponent(
-    `https://openapi.etsy.com/v2/listings/active?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images&keywords=${input}&limit=20`
+    `https://openapi.etsy.com/v2/listings/active?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images&keywords=${input}&limit=20&count=300`
   );
   const url = `https://api.allorigins.win/get?url=${encodedSearch}`;
 
@@ -68,7 +68,7 @@ function Navigation() {
           placeholder="Search items......"
           onChange={inputHandler}
           value={input}
-          onClick={() => setInput("")}
+          onClick={() => setInputData("")}
         />
       </SearchBox>
       <Title to="/" onClick={returnToMain}>
