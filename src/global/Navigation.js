@@ -5,16 +5,21 @@ import styled from "styled-components";
 import { ReactComponent as Search } from "../img/search.svg";
 import { ReactComponent as Cart } from "../img/shopping-cart.svg";
 import { ReactComponent as Arrow } from "../img/down-arrow.svg";
-import { InputSearchContext } from "../components/InputSearchContext";
+import { InputDataContext } from "../components/InputDataContext";
+import { OffsetContext } from "../components/OffsetContext";
+import { InputContext } from "../components/InputContext";
+import { SearchPageContext } from "../components/SearchPageContext";
 
 function Navigation() {
   const [fixedNav, setfixedNav] = useState(false);
-  const [input, setInput] = useState("");
-  const [inputData, setInputData] = useContext(InputSearchContext);
+  const [input, setInput] = useContext(InputContext);
+  const [inputData, setInputData] = useContext(InputDataContext);
+  const [offset, setOffset] = useContext(OffsetContext);
+  const [page, setPage] = useContext(SearchPageContext);
   let history = useHistory();
 
   const encodedSearch = encodeURIComponent(
-    `https://openapi.etsy.com/v2/listings/active?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images&keywords=${input}&limit=20&count=300`
+    `https://openapi.etsy.com/v2/listings/active?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images&keywords=${input}&limit=20&offset=${offset}`
   );
   const url = `https://api.allorigins.win/get?url=${encodedSearch}`;
 
@@ -39,16 +44,18 @@ function Navigation() {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    setInputData("");
+    setPage(1);
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
         if (data.contents) {
           setInputData(JSON.parse(data.contents));
+          console.log(inputData);
         }
       })
       .catch(console.error);
     history.push("/search");
-    console.log(inputData);
   };
 
   const returnToMain = () => {
@@ -75,10 +82,17 @@ function Navigation() {
         Widicy
       </Title>
       <RightItems>
-        <ProductsBox>
-          <Products>Products</Products>
-          <ArrowBtn />
-        </ProductsBox>
+        <Products>
+          <Header>
+            DISCOVER <ArrowBtn />
+          </Header>
+          <Dropdown>
+            <Li>Garden</Li>
+            <Li>Men coats</Li>
+            <Li>Smart watches</Li>
+            <Li>car equipment</Li>
+          </Dropdown>
+        </Products>
         <CartIcon />
       </RightItems>
       <BorderBottom></BorderBottom>
@@ -106,8 +120,18 @@ const Container = styled.div`
 `;
 
 const RightItems = styled.div`
+  position: relative;
+  width: 20vw;
+`;
+
+const Dropdown = styled.div``;
+
+const Li = styled.div`
+  text-decoration: none;
+`;
+
+const Header = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
 `;
 
@@ -116,14 +140,16 @@ const CartIcon = styled(Cart)`
   height: 1.8rem;
   width: 1.8rem;
   cursor: pointer;
+  float: right;
 `;
 
 const ArrowBtn = styled(Arrow)`
-  fill: white;
+  fill: ${(props) => props.theme.colors.secondary};
   height: 1.2rem;
   width: 1.2rem;
   cursor: pointer;
   margin-left: 0.5rem;
+  padding-bottom: 0.2rem;
 `;
 
 const SearchBtn = styled(Search)`
@@ -133,7 +159,7 @@ const SearchBtn = styled(Search)`
   position: absolute;
   top: 30%;
   opacity: 0.8;
-  right: 13%;
+  right: 0%;
   cursor: pointer;
 `;
 
@@ -142,25 +168,21 @@ const Title = styled(Link)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   letter-spacing: 0.25rem;
   font-family: "Rhodium Libre", serif;
   text-decoration: none;
   color: ${(props) => props.theme.colors.third};
-`;
-
-const ProductsBox = styled.div`
-  padding: 1rem 2rem;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 5vw;
+  text-transform: uppercase;
 `;
 
 const Products = styled.div`
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   letter-spacing: 0.3rem;
+  text-transform: uppercase;
+  position: absolute;
+  left: 0%;
+  width: 70%;
 `;
 
 const BorderBottom = styled.div`

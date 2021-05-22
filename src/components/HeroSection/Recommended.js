@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Fade } from "react-slideshow-image";
 import styled from "styled-components";
 import "react-slideshow-image/dist/styles.css";
+import { ProductContext } from "../ProductContext";
+import { useHistory } from "react-router-dom";
 
 function Recommended() {
   const [contents1, setContents1] = useState(null);
   const [contents2, setContents2] = useState(null);
   const [contents3, setContents3] = useState(null);
+  const [product, setProduct] = useContext(ProductContext);
+  let history = useHistory();
 
   const encoded1 = encodeURIComponent(
     `https://openapi.etsy.com/v2/listings/465354376?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
@@ -52,9 +56,13 @@ function Recommended() {
       .catch(console.error);
   }, []);
 
+  const shopNowHandler = (data) => {
+    setProduct(data);
+    history.push("/product");
+  };
+
   const properties = {
     duration: 4000,
-    infinite: true,
     transitionDuration: 500,
   };
 
@@ -68,7 +76,13 @@ function Recommended() {
           <Overlay />
           <InfoContainer>
             <Description>Bedding items</Description>
-            <Button>Shop now</Button>
+            <Button
+              onClick={() => {
+                shopNowHandler(465354376);
+              }}
+            >
+              Shop now
+            </Button>
             <p>TRENDING THIS WEEK</p>
           </InfoContainer>
         </EachSlide>
@@ -77,16 +91,28 @@ function Recommended() {
           <Overlay />
           <InfoContainer>
             <Description>Outdoor items</Description>
-            <Button>Shop now</Button>
+            <Button
+              onClick={() => {
+                shopNowHandler(958578813);
+              }}
+            >
+              Shop now
+            </Button>
             <p>TRENDING THIS WEEK</p>
           </InfoContainer>
         </EachSlide>
         <EachSlide>
-          <Img src={contents3?.results[0].Images[3].url_fullxfull} alt="img" />
+          <Img src={contents3?.results[0].Images[0].url_fullxfull} alt="img" />
           <Overlay />
           <InfoContainer>
             <Description>Wall Objects</Description>
-            <Button>Shop now</Button>
+            <Button
+              onClick={() => {
+                shopNowHandler(971993404);
+              }}
+            >
+              Shop now
+            </Button>
             <p>TRENDING THIS WEEK</p>
           </InfoContainer>
         </EachSlide>

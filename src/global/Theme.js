@@ -12,7 +12,7 @@ export const darkTheme = {
 export const lightTheme = {
   colors: {
     main: "#191919",
-    secondary: "#E5E5E5",
+    secondary: "#F9F9F9",
     third: "#70D0EF",
     hsl: "linear-gradient(hsla(0, 0%, 0%, 0), hsla(0, 0%, 0%, 1) 25%, hsla(0, 0%, 0%, 1))",
     background: "DBDBDB",

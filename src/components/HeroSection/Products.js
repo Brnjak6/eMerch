@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { ReactComponent as Arrow } from "../../img/down-arrow.svg";
+import { useHistory } from "react-router-dom";
+import { ProductContext } from "../ProductContext";
 
 function Products() {
   const [contents1, setContents1] = useState(null);
   const [contents2, setContents2] = useState(null);
   const [contents3, setContents3] = useState(null);
+  const [product, setProduct] = useContext(ProductContext);
+  let history = useHistory();
 
   const encoded1 = encodeURIComponent(
     `https://openapi.etsy.com/v2/listings/386355698?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
@@ -50,6 +54,11 @@ function Products() {
       .catch(console.error);
   }, []);
 
+  const shopNowHandler = (data) => {
+    setProduct(data);
+    history.push("/product");
+  };
+
   return (
     <Container>
       <Product>
@@ -57,7 +66,13 @@ function Products() {
         <Info>
           <ArrowSvg />
           <Description>Cotton Prairie Pant in OCEAN </Description>
-          <button>Shop Now</button>
+          <button
+            onClick={() => {
+              shopNowHandler(386355698);
+            }}
+          >
+            Shop Now
+          </button>
         </Info>
       </Product>
       <Product>
@@ -65,7 +80,13 @@ function Products() {
         <Info>
           <ArrowSvg />
           <Description>Retro Steampunk Glasses</Description>
-          <button>Shop Now</button>
+          <button
+            onClick={() => {
+              shopNowHandler(879403626);
+            }}
+          >
+            Shop Now
+          </button>
         </Info>
       </Product>
       <Product>
@@ -73,7 +94,13 @@ function Products() {
         <Info>
           <ArrowSvg />
           <Description>Floor Lamp - A Beautiful Wooden Floor Lamp</Description>
-          <button>Shop Now</button>
+          <button
+            onClick={() => {
+              shopNowHandler(495036223);
+            }}
+          >
+            Shop Now
+          </button>
         </Info>
       </Product>
     </Container>

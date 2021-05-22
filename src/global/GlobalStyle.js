@@ -13,6 +13,7 @@ body {
     min-height: 100vh;
    font-family: "Rhodium Libre", serif;
     overflow-x: hidden;
+    font-size: 100%;
 
     ::-webkit-scrollbar {
   width: 10px;
@@ -41,11 +42,11 @@ button {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: ${(props) => props.theme.colors.secondary};
+  background: ${(props) => props.theme.colors.main};
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: ${(props) => props.theme.colors.main};
+  background: ${(props) => props.theme.colors.third};
 }
 
 input[type="search"]::-webkit-search-decoration,
