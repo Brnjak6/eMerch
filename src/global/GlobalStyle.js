@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import htmlbg from "../img/htmlbg.svg";
 
 const GlobalStyle = createGlobalStyle`
 
@@ -11,7 +12,8 @@ const GlobalStyle = createGlobalStyle`
 
 body {
     min-height: 100vh;
-   font-family: "Rhodium Libre", serif;
+   font-family: 'Poppins', sans-serif;
+   background: url(${htmlbg});
     overflow-x: hidden;
     font-size: 100%;
 

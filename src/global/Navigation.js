@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ReactComponent as Search } from "../img/search.svg";
 import { ReactComponent as Cart } from "../img/shopping-cart.svg";
-import { ReactComponent as Arrow } from "../img/down-arrow.svg";
 import { InputDataContext } from "../components/InputDataContext";
 import { OffsetContext } from "../components/OffsetContext";
 import { InputContext } from "../components/InputContext";
 import { SearchPageContext } from "../components/SearchPageContext";
+import DiscoverComponent from "../components/DiscoverComponent";
 
 function Navigation() {
   const [fixedNav, setfixedNav] = useState(false);
@@ -16,16 +16,23 @@ function Navigation() {
   const [inputData, setInputData] = useContext(InputDataContext);
   const [offset, setOffset] = useContext(OffsetContext);
   const [page, setPage] = useContext(SearchPageContext);
+  const [category, setCategory] = useState(false);
+  const notInitialRender = useRef(false);
   let history = useHistory();
 
   const encodedSearch = encodeURIComponent(
     `https://openapi.etsy.com/v2/listings/active?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images&keywords=${input}&limit=20&offset=${offset}`
   );
-  const url = `https://api.allorigins.win/get?url=${encodedSearch}`;
+  const urlSearch = `https://api.allorigins.win/get?url=${encodedSearch}`;
+
+  const encodedCategory = encodeURIComponent(
+    `https://openapi.etsy.com/v2/listings/active?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images&keywords=${category}&limit=20&offset=${offset}`
+  );
+  const urlCategory = `https://api.allorigins.win/get?url=${encodedCategory}`;
 
   useEffect(() => {
     const changeBackground = () => {
-      if (window.scrollY >= 130) {
+      if (window.scrollY >= 1100) {
         setfixedNav(true);
       } else {
         setfixedNav(false);
@@ -46,17 +53,39 @@ function Navigation() {
     e.preventDefault();
     setInputData("");
     setPage(1);
-    fetch(url)
+    fetch(urlSearch)
       .then((response) => response.json())
       .then((data) => {
         if (data.contents) {
           setInputData(JSON.parse(data.contents));
           console.log(inputData);
+          history.push("/search");
         }
       })
       .catch(console.error);
-    history.push("/search");
   };
+
+  const searchByCategory = (data) => {
+    setInputData("");
+    history.push("/search");
+    setInput(data.target.innerHTML);
+    setCategory(data.target.innerHTML);
+  };
+
+  useEffect(() => {
+    if (notInitialRender.current && category) {
+      fetch(urlCategory)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.contents) {
+            setInputData(JSON.parse(data.contents));
+          }
+        })
+        .catch(console.error);
+    } else {
+      notInitialRender.current = true;
+    }
+  }, [category]);
 
   const returnToMain = () => {
     setInput("");
@@ -83,17 +112,19 @@ function Navigation() {
       </Title>
       <RightItems>
         <Products>
-          <Header>
-            DISCOVER <ArrowBtn />
-          </Header>
-          <Dropdown>
-            <Li>Garden</Li>
-            <Li>Men coats</Li>
-            <Li>Smart watches</Li>
-            <Li>car equipment</Li>
-          </Dropdown>
+          <Discover>
+            <DiscoverComponent />
+            <Dropdown>
+              <Li onClick={(e) => searchByCategory(e)}>gardening</Li>
+              <Li onClick={(e) => searchByCategory(e)}>men coats</Li>
+              <Li onClick={(e) => searchByCategory(e)}>smart watches</Li>
+              <Li onClick={(e) => searchByCategory(e)}>car products</Li>
+            </Dropdown>
+          </Discover>
         </Products>
-        <CartIcon />
+        <ToCart to={"/cart"}>
+          <CartIcon />
+        </ToCart>
       </RightItems>
       <BorderBottom></BorderBottom>
     </Container>
@@ -101,10 +132,11 @@ function Navigation() {
 }
 
 const Container = styled.div`
-  z-index: 200;
+  z-index: 500;
   width: 100%;
-  height: 11vh;
+  height: 10vh;
   padding: 0 5rem;
+  font-family: "Rhodium Libre", serif;
   background: ${(props) => props.theme.colors.navigation};
   color: ${(props) => props.theme.colors.secondary};
   display: flex;
@@ -124,15 +156,49 @@ const RightItems = styled.div`
   width: 20vw;
 `;
 
-const Dropdown = styled.div``;
+const Dropdown = styled.ul`
+  background: ${(props) => props.theme.colors.main};
+  color: ${(props) => props.theme.colors.secondary};
+  margin-top: 0.3rem;
+  width: fit-content;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 0;
+  opacity: 0;
+  transition: 0.4s;
+`;
 
 const Li = styled.div`
   text-decoration: none;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid ${(props) => props.theme.colors.secondary};
+  font-size: 90%;
+  transition: 1s;
+  background: linear-gradient(
+    to right,
+    ${(props) => props.theme.colors.third} 50%,
+    ${(props) => props.theme.colors.main} 50%
+  );
+  background-size: 200% 100%;
+  background-position: right bottom;
+
+  &:hover {
+    background-position: left bottom;
+  }
 `;
 
-const Header = styled.div`
+const Discover = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
+  cursor: pointer;
+
+  &:hover > ul {
+    height: auto;
+    opacity: 1;
+  }
 `;
 
 const CartIcon = styled(Cart)`
@@ -143,13 +209,9 @@ const CartIcon = styled(Cart)`
   float: right;
 `;
 
-const ArrowBtn = styled(Arrow)`
-  fill: ${(props) => props.theme.colors.secondary};
-  height: 1.2rem;
-  width: 1.2rem;
-  cursor: pointer;
-  margin-left: 0.5rem;
-  padding-bottom: 0.2rem;
+const ToCart = styled(Link)`
+  width: fit-content;
+  height: fit-content;
 `;
 
 const SearchBtn = styled(Search)`
@@ -237,6 +299,11 @@ const Input = styled.input`
   font-size: 1.15rem;
   font-weight: lighter;
   padding: 0.5rem 1rem;
+  opacity: 0.5;
+
+  &:focus {
+    opacity: 1;
+  }
 
   &::placeholder {
     color: ${(props) => props.theme.colors.secondary};

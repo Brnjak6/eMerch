@@ -173,6 +173,12 @@ function SearchPage() {
         <HashLoader size={150} />
       </LoadContainer>
     );
+  } else if (inputData.results.length === 0) {
+    return (
+      <h2 style={{ textAlign: "center", marginTop: "5rem" }}>
+        Unfortunately there are no results for your query
+      </h2>
+    );
   } else {
     return (
       <>

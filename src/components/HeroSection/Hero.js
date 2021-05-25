@@ -29,11 +29,15 @@ const GridLeft = styled.div`
   background: #000;
   grid-column: left-start / left-end;
   position: relative;
+  box-shadow: 0 0 20px 1px black;
 `;
 
 const GridRight = styled.div`
   height: 85vh;
   grid-column: right-start / right-end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export default Hero;

@@ -1,16 +1,28 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { Fade } from "react-slideshow-image";
 import styled from "styled-components";
 import "react-slideshow-image/dist/styles.css";
 import { ProductContext } from "../ProductContext";
+import { InputDataContext } from "../InputDataContext";
 import { useHistory } from "react-router-dom";
+import { InputContext } from "../InputContext";
 
 function Recommended() {
   const [contents1, setContents1] = useState(null);
   const [contents2, setContents2] = useState(null);
   const [contents3, setContents3] = useState(null);
   const [product, setProduct] = useContext(ProductContext);
+  const [category, setCategory] = useState(false);
+  const [inputData, setInputData] = useContext(InputDataContext);
+  const [input, setInput] = useContext(InputContext);
+
+  const notInitialRender = useRef(false);
   let history = useHistory();
+
+  const encodedCategory = encodeURIComponent(
+    `https://openapi.etsy.com/v2/listings/active?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images&keywords=${category}&limit=20`
+  );
+  const urlCategory = `https://api.allorigins.win/get?url=${encodedCategory}`;
 
   const encoded1 = encodeURIComponent(
     `https://openapi.etsy.com/v2/listings/465354376?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
@@ -44,7 +56,6 @@ function Recommended() {
         }
       })
       .catch(console.error);
-    console.log(contents2);
 
     fetch(url3)
       .then((response) => response.json())
@@ -56,10 +67,27 @@ function Recommended() {
       .catch(console.error);
   }, []);
 
-  const shopNowHandler = (data) => {
-    setProduct(data);
-    history.push("/product");
+  const searchByCategory = (data) => {
+    setInputData("");
+    setInput(data);
+    setCategory(data);
   };
+
+  useEffect(() => {
+    if (notInitialRender.current && category) {
+      history.push("/search");
+      fetch(urlCategory)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.contents) {
+            setInputData(JSON.parse(data.contents));
+          }
+        })
+        .catch(console.error);
+    } else {
+      notInitialRender.current = true;
+    }
+  }, [category]);
 
   const properties = {
     duration: 4000,
@@ -76,11 +104,7 @@ function Recommended() {
           <Overlay />
           <InfoContainer>
             <Description>Bedding items</Description>
-            <Button
-              onClick={() => {
-                shopNowHandler(465354376);
-              }}
-            >
+            <Button onClick={() => searchByCategory("bedroom")}>
               Shop now
             </Button>
             <p>TRENDING THIS WEEK</p>
@@ -91,11 +115,7 @@ function Recommended() {
           <Overlay />
           <InfoContainer>
             <Description>Outdoor items</Description>
-            <Button
-              onClick={() => {
-                shopNowHandler(958578813);
-              }}
-            >
+            <Button onClick={() => searchByCategory("outdoor")}>
               Shop now
             </Button>
             <p>TRENDING THIS WEEK</p>
@@ -106,11 +126,7 @@ function Recommended() {
           <Overlay />
           <InfoContainer>
             <Description>Wall Objects</Description>
-            <Button
-              onClick={() => {
-                shopNowHandler(971993404);
-              }}
-            >
+            <Button onClick={() => searchByCategory("wall poster")}>
               Shop now
             </Button>
             <p>TRENDING THIS WEEK</p>

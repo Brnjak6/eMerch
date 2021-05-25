@@ -40,7 +40,7 @@ const Modal = styled.div`
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: ${(props) => props.theme.colors.secondary};
+    background: ${(props) => props.theme.colors.third};
   }
 `;
 

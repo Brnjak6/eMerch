@@ -1,18 +1,37 @@
-import React, { useState, useEffect, useContext } from "react";
-import { ProductContext } from "./ProductContext";
+import React, { useState, useEffect, useContext, useRef } from "react";
+import { ProductContext } from "../components/ProductContext";
+import { useHistory } from "react-router-dom";
 import HashLoader from "react-spinners/HashLoader";
 import styled from "styled-components";
-import ReadMoreModal from "./ReadMoreModal";
+import ReadMoreModal from "../components/ReadMoreModal";
+import { InputContext } from "../components/InputContext";
+import { InputDataContext } from "../components/InputDataContext";
+import { ItemsInCartContext } from "../components/ItemsInCartContext";
+import Line from "../components/RadialLine";
+import AlertWindow from "../components/AlertWindow";
 
 function SelectedProduct() {
   const [product, setProduct] = useContext(ProductContext);
   const [fetched, setFetched] = useState(false);
   const [activeImage, setActiveImage] = useState(null);
   const [readMore, setReadMore] = useState(false);
+  const [input, setInput] = useContext(InputContext);
+  const [inputData, setInputData] = useContext(InputDataContext);
+  const [itemsInCart, setItemsInCart] = useContext(ItemsInCartContext);
+  const [category, setCategory] = useState(false);
+  const notInitialRender = useRef(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  let history = useHistory();
+
   const encodedSearch = encodeURIComponent(
     `https://openapi.etsy.com/v2/listings/${product}?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
   );
   const url = `https://api.allorigins.win/get?url=${encodedSearch}`;
+
+  const encodedCategory = encodeURIComponent(
+    `https://openapi.etsy.com/v2/listings/active?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images&keywords=${category}&limit=20`
+  );
+  const urlCategory = `https://api.allorigins.win/get?url=${encodedCategory}`;
 
   useEffect(() => {
     fetch(url)
@@ -46,6 +65,54 @@ function SelectedProduct() {
     setReadMore(false);
   };
 
+  const searchByCategory = async (data) => {
+    setInputData("");
+    setInput(data.target.innerHTML);
+    setCategory(data.target.innerHTML);
+  };
+
+  useEffect(() => {
+    if (notInitialRender.current && category) {
+      history.push("/search");
+      fetch(urlCategory)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.contents) {
+            setInputData(JSON.parse(data.contents));
+          }
+        })
+        .catch(console.error);
+    } else {
+      notInitialRender.current = true;
+    }
+  }, [category]);
+
+  const addToCart = () => {
+    const isInCart = itemsInCart.find(
+      (item) => item.listing_id === fetched.results[0].listing_id
+    );
+
+    if (isInCart) {
+      setAlertMessage("Product is already in the cart");
+      return setTimeout(() => {
+        setAlertMessage("");
+      }, 2000);
+    } else if (itemsInCart.length > 10) {
+      setAlertMessage("Maximum amount of 10 items in cart is reached");
+      return setTimeout(() => {
+        setAlertMessage("");
+      }, 2000);
+    } else setItemsInCart((prevState) => [...prevState, fetched.results[0]]);
+    setAlertMessage("Product added to cart");
+    return setTimeout(() => {
+      setAlertMessage("");
+    }, 2000);
+  };
+
+  const closeAlertMessage = () => {
+    setAlertMessage("");
+  };
+
   return !fetched ? (
     <LoadContainer>
       <HashLoader size={150} />
@@ -62,7 +129,7 @@ function SelectedProduct() {
               <Pgraph>Taxes included</Pgraph>
             </PriceBox>
             <ButtonBox>
-              <Button>Add To Cart</Button>
+              <Button onClick={addToCart}>Add To Cart</Button>
               <p style={{ fontSize: "90%" }}>
                 {fetched.results[0].quantity * 1 < 5
                   ? `Only ${fetched.results[0].quantity} left`
@@ -83,7 +150,12 @@ function SelectedProduct() {
             </Description>
             <Categories>
               {fetched.results[0].taxonomy_path.map((category) => (
-                <Category key={Math.random()}>{category}</Category>
+                <Category
+                  key={Math.random()}
+                  onClick={(e) => searchByCategory(e)}
+                >
+                  {category}
+                </Category>
               ))}
             </Categories>
           </InfoBox>
@@ -96,7 +168,7 @@ function SelectedProduct() {
                   onClick={() => setActiveImage(img.url_fullxfull)}
                   style={
                     img.url_fullxfull === activeImage
-                      ? { border: "3px double black" }
+                      ? { border: "8px double black" }
                       : null
                   }
                 />
@@ -112,6 +184,12 @@ function SelectedProduct() {
         />
       ) : (
         false
+      )}
+      {alertMessage.length > 2 && (
+        <AlertWindow
+          message={alertMessage}
+          closeAlertMessage={closeAlertMessage}
+        />
       )}
     </Container>
   );
@@ -181,12 +259,6 @@ const Button = styled.button`
     color: ${(props) => props.theme.colors.third};
     border: 5px double ${(props) => props.theme.colors.third};
   }
-`;
-
-const Line = styled.div`
-  height: 3px;
-  width: 80%;
-  background: radial-gradient(#000, #fff);
 `;
 
 const Description = styled.p`

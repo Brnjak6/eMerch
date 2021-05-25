@@ -109,7 +109,7 @@ function Products() {
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: 95%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -122,6 +122,7 @@ const Product = styled.div`
   position: relative;
   overflow: hidden;
   box-shadow: 0 0 8px;
+  border-radius: 5px;
 `;
 
 const Img = styled.img`
