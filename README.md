@@ -17,11 +17,11 @@ Some of the technologies you can find in this project are:
   - JSX
   
 *CSS
-  -Styled Components
-  -media queries 
+  - Styled Components
+  - media queries 
   
  *JavaScript
-  --React
+    -React
   
   React:
    - useState
