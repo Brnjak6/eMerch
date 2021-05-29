@@ -24,14 +24,14 @@ Some of the technologies you can find in this project are:
   --React
   
   React:
-    - useState
-    - useEffect
-    - useContext
-    - Route, Switch
-    - Link
-    - useHistory
-    - localStorage
-    - Framer Motion
+   - useState
+   - useEffect
+   - useContext
+   - Route, Switch
+   - Link
+   - useHistor
+   - localStorage
+   - Framer Motion
     
 Some of the challenges I faced: price sorting in search page, cart pricing while lifting state up in React components,
 conditional rending until data is resolved...
