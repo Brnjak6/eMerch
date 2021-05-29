@@ -1,6 +1,6 @@
 # E-Commerce Frontend React Project
 
-![Landing Page](https://imgur.com/15KsA1y)
+![landing page](https://i.ibb.co/HgrgT7H/Screenshot-104.png")
 
 ### Dynamic website built with Etsy's open api REST API data
 > visit https://www.etsy.com/developers/ for more information
