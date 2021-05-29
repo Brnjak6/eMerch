@@ -160,7 +160,7 @@ const Title = styled.h1`
   text-align: center;
   letter-spacing: 0.3rem;
   font-size: 2rem;
-  margin-top: 5rem;
+  margin: 6rem;
   font-family: "Rhodium Libre", serif;
 
   @media only screen and (min-width: 1200px) {

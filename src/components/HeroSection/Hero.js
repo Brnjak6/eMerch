@@ -37,6 +37,10 @@ const GridLeft = styled.div`
   grid-column: left-start / left-end;
   position: relative;
   box-shadow: 0 0 5px #000;
+
+  @media only screen and (max-width: 1200px) {
+    margin-bottom: 5rem;
+  }
 `;
 
 const GridRight = styled.div`
