@@ -2,7 +2,7 @@
 
 ![landing page](https://i.ibb.co/HgrgT7H/Screenshot-104.png")
 
-### Dynamic website built with Etsy's open api REST API data
+### Dynamic website built with Etsy's open REST API data
 > visit https://www.etsy.com/developers/ for more information
 
 Goal of this project was practice frontend development as much as possible.
