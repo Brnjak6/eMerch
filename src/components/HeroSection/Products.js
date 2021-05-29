@@ -124,6 +124,7 @@ const Product = styled.div`
   overflow: hidden;
   box-shadow: 0 0 8px;
   border-radius: 5px;
+  background: #000;
 
   @media only screen and (max-width: 1200px) {
     height: 40vh;
