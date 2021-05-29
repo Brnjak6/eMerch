@@ -16,12 +16,12 @@ Some of the technologies you can find in this project are:
 * HTML 
   - JSX
   
-*CSS
+* CSS
   - Styled Components
   - media queries 
   
- *JavaScript
-    -React
+ * JavaScript
+   - React
   
   React:
    - useState
