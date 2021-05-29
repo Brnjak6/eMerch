@@ -8,7 +8,7 @@ import { SearchPageProvider } from "./components/SearchPageContext";
 import { ProductProvider } from "./components/ProductContext";
 import { OffsetProvider } from "./components/OffsetContext";
 import { ThemeProvider } from "styled-components";
-import { darkTheme, lightTheme } from "./global/Theme";
+import { lightTheme } from "./global/Theme";
 import Main from "./pages/Main";
 import Navigation from "./global/Navigation";
 import Banner from "./components/Banner";
@@ -18,14 +18,8 @@ import Cart from "./pages/Cart";
 import Fashion from "./pages/Fashion";
 
 function App() {
-  const [theme, setTheme] = useState("light");
-
-  const handleTheme = () => {
-    theme === "dark" ? setTheme("light") : setTheme("dark");
-  };
-
   return (
-    <ThemeProvider theme={theme === "dark" ? darkTheme : lightTheme}>
+    <ThemeProvider theme={lightTheme}>
       <GlobalStyle />
       <DataProvider>
         <InputProvider>
@@ -34,7 +28,7 @@ function App() {
               <ProductProvider>
                 <OffsetProvider>
                   <Banner />
-                  <Navigation theme={handleTheme} />
+                  <Navigation />
                   <Switch>
                     <Route path="/" exact>
                       <Main />

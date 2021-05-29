@@ -32,11 +32,11 @@ const Container = styled(motion.div)`
 `;
 
 const GridLeft = styled.div`
-  height: 85vh;
+  height: 70vh;
   background: #000;
   grid-column: left-start / left-end;
   position: relative;
-  box-shadow: 0 0 20px 1px black;
+  box-shadow: 0 0 5px #000;
 `;
 
 const GridRight = styled.div`

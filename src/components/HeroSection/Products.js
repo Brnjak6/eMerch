@@ -130,7 +130,7 @@ const Container = styled.div`
 `;
 
 const Product = styled.div`
-  height: 30%;
+  height: 32%;
   width: 85%;
   position: relative;
   overflow: hidden;
