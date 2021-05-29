@@ -15,6 +15,7 @@ import Banner from "./components/Banner";
 import SearchPage from "./pages/SearchPage";
 import Product from "./pages/Product";
 import Cart from "./pages/Cart";
+import Fashion from "./pages/Fashion";
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -33,7 +34,7 @@ function App() {
               <ProductProvider>
                 <OffsetProvider>
                   <Banner />
-                  <Navigation />
+                  <Navigation theme={handleTheme} />
                   <Switch>
                     <Route path="/" exact>
                       <Main />
@@ -46,6 +47,9 @@ function App() {
                     </Route>
                     <Route path="/cart">
                       <Cart />
+                    </Route>
+                    <Route path="/fashion">
+                      <Fashion />
                     </Route>
                   </Switch>
                 </OffsetProvider>

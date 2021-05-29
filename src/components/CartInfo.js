@@ -46,23 +46,51 @@ const Container = styled.div`
   border: 1px solid black;
   border-radius: 2%;
   position: relative;
+  overflow: hidden;
+  font-family: "Rhodium Libre", serif;
+
+  @media only screen and (max-width: 1100px) {
+    height: 70vh;
+    width: 60%;
+    font-size: 120%;
+  }
+
+  @media only screen and (max-width: 800px) {
+    width: 95%;
+    margin-top: 5rem;
+  }
+
+  @media only screen and (max-width: 550px) {
+    width: 100%;
+    border: none;
+    margin-top: 9rem;
+    height: 35rem;
+  }
 `;
 
 const Costs = styled.div`
-  z-index: 51;
+  z-index: 511;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: ${(props) => props.theme.colors.main};
-  font-weight: bolder;
-  font-size: 110%;
+  color: ${(props) => props.theme.colors.secondary};
+  font-weight: lighter;
+  font-size: 130%;
   letter-spacing: 0.2rem;
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
   height: 100%;
   width: 80%;
+
+  @media only screen and (max-width: 1100px) {
+    justify-content: space-between;
+    font-size: 170%;
+    line-height: 3rem;
+    height: fit-content;
+    font-weight: lighter;
+  }
 `;
 
 const Info = styled.div`
@@ -78,10 +106,10 @@ const Total = styled.div`
 const Button = styled.button`
   z-index: 51;
   border: none;
-  background: cyan !important;
+  background: ${(props) => props.theme.colors.third} !important;
   border-radius: 5% 10%;
   padding: 0.3rem 0.5rem;
-  color: ${(props) => props.theme.colors.main};
+  color: ${(props) => props.theme.colors.secondary};
   margin: 3rem 0;
   width: fit-content;
   align-self: center;
@@ -89,6 +117,10 @@ const Button = styled.button`
   &:hover {
     background: #000 !important;
     color: #fff;
+  }
+
+  @media only screen and (max-width: 800px) {
+    border: 3px solid ${(props) => props.theme.colors.main};
   }
 `;
 

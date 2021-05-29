@@ -4,6 +4,7 @@ import CityView from "../components/CityView";
 import Footer from "../components/Footer";
 import Hero from "../components/HeroSection/Hero";
 import Intro from "../components/Intro";
+import RoomDecoration from "../components/RoomDecoration";
 
 function Main() {
   return (
@@ -11,6 +12,7 @@ function Main() {
       <Hero />
       <Intro />
       <CityView />
+      <RoomDecoration />
       <Footer />
     </Container>
   );
@@ -18,6 +20,7 @@ function Main() {
 
 const Container = styled.div`
   min-height: 85vh;
+  background: ${(props) => props.theme.colors.secondary};
 `;
 
 export default Main;

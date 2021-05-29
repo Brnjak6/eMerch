@@ -1,0 +1,66 @@
+.open {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  border-radius: 0%;
+}
+
+.burger-box {
+  width: 13%;
+  height: 100%;
+  z-index: 880;
+  right: 0%;
+  top: 1.2%;
+  position: relative;
+  @media only screen and (min-width: 1200px) {
+    display: none;
+  }
+}
+
+.container {
+  display: inline-block;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+}
+
+.bar {
+  position: absolute;
+  display: block;
+  height: 2px;
+  background: #fff;
+  width: 30px;
+  left: 0px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.bar1 {
+  top: 16px;
+}
+
+.bar2 {
+  top: 24px;
+}
+
+.bar3 {
+  top: 32px;
+}
+
+.change .bar1 {
+  top: 25px;
+  transform: rotateZ(320deg);
+}
+
+.change .bar2 {
+  opacity: 0;
+}
+
+.change .bar3 {
+  top: 25px;
+  transform: rotateZ(-320deg);
+}

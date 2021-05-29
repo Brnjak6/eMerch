@@ -44,11 +44,19 @@ function ProductData({ price, id, value }) {
 const Price = styled.p`
   font-weight: lighter;
   font-size: 115%;
+
+  @media only screen and (max-width: 600px) {
+    font-size: 130%;
+  }
 `;
 
 const Quantity = styled.p`
   font-weight: bold;
   font-size: 105%;
+
+  @media only screen and (max-width: 600px) {
+    font-size: 110%;
+  }
 `;
 
 const Select = styled.select`
@@ -60,6 +68,11 @@ const Select = styled.select`
   &:active,
   &:focus {
     outline: none;
+  }
+
+  @media only screen and (max-width: 600px) {
+    padding: 0.4rem;
+    font-size: 100%;
   }
 `;
 export default ProductData;

@@ -5,6 +5,8 @@ import Line from "../components/RadialLine";
 import { ItemsInCartContext } from "../components/ItemsInCartContext";
 import ProductData from "../components/ProductData";
 import { ReactComponent as Remove } from "../img/delete.svg";
+import { motion } from "framer-motion";
+import { pageAnimation } from "../global/Animations";
 
 function Cart() {
   const [itemsInCart, setItemsInCart] = useContext(ItemsInCartContext);
@@ -34,7 +36,7 @@ function Cart() {
   };
 
   return (
-    <Container>
+    <Container variants={pageAnimation} initial="hidden" animate="show">
       <GridLeft>
         <SelectedItems>
           <h2>Products in cart</h2>
@@ -66,13 +68,19 @@ function Cart() {
   );
 }
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   height: 85vh;
   display: grid;
-  background: white;
+  background: ${(props) => props.theme.colors.secondary};
   grid-template-columns:
     [left-start] minmax(40rem, 70rem) [left-end right-start] minmax(20rem, 1fr)
     [right-end];
+
+  @media only screen and (max-width: 1100px) {
+    display: flex;
+    flex-direction: column;
+    background: ${(props) => props.theme.colors.transparent};
+  }
 `;
 
 const GridLeft = styled.div`
@@ -96,6 +104,10 @@ const SelectedItems = styled.div`
   justify-content: flex-start;
   flex-direction: column;
   margin-top: 2rem;
+
+  @media only screen and (max-width: 1000px) {
+    width: 100vw;
+  }
 `;
 
 const Products = styled.div`
@@ -103,6 +115,7 @@ const Products = styled.div`
   margin-top: 2rem;
   overflow: auto;
   height: 70vh;
+  padding: 1rem;
 
   ::-webkit-scrollbar {
     width: 10px;
@@ -118,29 +131,62 @@ const Products = styled.div`
   ::-webkit-scrollbar-thumb:hover {
     background: ${(props) => props.theme.colors.third};
   }
+
+  @media only screen and (max-width: 1100px) {
+    margin-bottom: 3rem;
+    width: 100%;
+    height: 60vh;
+  }
 `;
 
 const Img = styled.img`
   height: 19vh;
   width: 16vw;
   border: 9px double ${(props) => props.theme.colors.main};
+  display: flex;
+  align-self: center;
+  justify-content: center;
+
+  @media only screen and (max-width: 800px) {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    width: 50%;
+    margin-bottom: 1rem;
+    border: none;
+  }
+  @media only screen and (max-width: 600px) {
+    width: 80%;
+  }
 `;
 
 const Product = styled.div`
   display: flex;
   margin: 2rem 0;
-  background: linear-gradient(120deg, #0af, white);
   padding: 2rem;
   position: relative;
   border: 1px solid black;
+
+  @media only screen and (max-width: 800px) {
+    flex-direction: column;
+    align-items: center;
+    border: none;
+    font-size: 120%;
+  }
 `;
 
 const Title = styled.div`
-  font-size: 100%;
-  font-weight: bold;
+  font-size: 115%;
   display: flex;
   flex-wrap: wrap;
   text-align: center;
+
+  @media only screen and (max-width: 1200px) {
+    font-size: 125%;
+  }
+  @media only screen and (max-width: 500px) {
+    display: none;
+  }
 `;
 
 const RemoveSvg = styled(Remove)`
@@ -162,8 +208,16 @@ const Information = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 30rem;
+  width: 80%;
   margin-left: 1rem;
+
+  @media only screen and (max-width: 800px) {
+    margin-left: 0rem;
+  }
+
+  @media only screen and (max-width: 600px) {
+    font-size: 120%;
+  }
 `;
 
 const Numbers = styled.div`
@@ -171,6 +225,13 @@ const Numbers = styled.div`
   justify-content: space-between;
   margin-top: 2rem;
   width: 85%;
+
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+    line-height: 4rem;
+    width: 100%;
+  }
 `;
 
 export default Cart;

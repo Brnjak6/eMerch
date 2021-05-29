@@ -115,7 +115,7 @@ function SelectedProduct() {
 
   return !fetched ? (
     <LoadContainer>
-      <HashLoader size={150} />
+      <HashLoader size={150} color={"#42748F"} />
     </LoadContainer>
   ) : (
     <Container>
@@ -159,22 +159,24 @@ function SelectedProduct() {
               ))}
             </Categories>
           </InfoBox>
-          <Image src={activeImage} />
-          <Variants>
-            {fetched.results[0].Images.map((img) => (
-              <div key={img.listing_image_id}>
-                <ExtraImg
-                  src={img.url_fullxfull}
-                  onClick={() => setActiveImage(img.url_fullxfull)}
-                  style={
-                    img.url_fullxfull === activeImage
-                      ? { border: "8px double black" }
-                      : null
-                  }
-                />
-              </div>
-            ))}
-          </Variants>
+          <Pictures>
+            <Image src={activeImage} />
+            <Variants>
+              {fetched.results[0].Images.map((img) => (
+                <div key={img.listing_image_id}>
+                  <ExtraImg
+                    src={img.url_fullxfull}
+                    onClick={() => setActiveImage(img.url_fullxfull)}
+                    style={
+                      img.url_fullxfull === activeImage
+                        ? { border: "8px double black" }
+                        : null
+                    }
+                  />
+                </div>
+              ))}
+            </Variants>
+          </Pictures>
         </ProductBox>
       </ResultItem>
       {readMore ? (
@@ -201,6 +203,12 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  font-size: 125%;
+  overflow-x: hidden;
+
+  @media only screen and (max-width: 1200px) {
+    font-size: 125%;
+  }
 `;
 
 const ResultItem = styled.div`
@@ -216,6 +224,14 @@ const Image = styled.img`
   width: 35rem;
   height: 88%;
   border-radius: 4px;
+
+  @media only screen and (max-width: 1200px) {
+    width: 95%;
+  }
+
+  @media only screen and (max-width: 700px) {
+    width: 100%;
+  }
 `;
 
 const ExtraImg = styled.img`
@@ -224,6 +240,12 @@ const ExtraImg = styled.img`
   margin: 0.2rem 0;
   cursor: pointer;
   z-index: 5;
+
+  @media only screen and (max-width: 1200px) {
+    width: 4rem;
+    height: 4rem;
+    margin: 0.3rem;
+  }
 `;
 
 const InfoBox = styled.div`
@@ -233,7 +255,16 @@ const InfoBox = styled.div`
   flex-direction: column;
   width: 27%;
   height: 88%;
-  overflow: hidden;
+
+  @media only screen and (max-width: 1200px) {
+    width: 95%;
+    padding: 2.5rem;
+    line-height: 4rem;
+  }
+  @media only screen and (max-width: 400px) {
+    font-size: 1.1rem;
+    margin-top: 4rem;
+  }
 `;
 
 const ButtonBox = styled.div`
@@ -246,6 +277,14 @@ const Title = styled.h2`
   color: ${(props) => props.theme.colors.main};
   text-align: center;
   margin-top: 0.5rem;
+  width: 90%;
+
+  @media only screen and (max-width: 1500px) {
+    font-size: 120%;
+  }
+  @media only screen and (max-width: 400px) {
+    margin-bottom: 4rem;
+  }
 `;
 
 const Button = styled.button`
@@ -258,6 +297,9 @@ const Button = styled.button`
     background: ${(props) => props.theme.colors.main} !important;
     color: ${(props) => props.theme.colors.third};
     border: 5px double ${(props) => props.theme.colors.third};
+  }
+  @media only screen and (max-width: 700px) {
+    font-size: 120%;
   }
 `;
 
@@ -283,6 +325,28 @@ const Categories = styled.div`
   justify-content: center;
   flex-wrap: wrap;
 `;
+const Pictures = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100%;
+  width: 50%;
+
+  @media only screen and (max-width: 1200px) {
+    font-size: 115%;
+    flex-direction: column;
+    width: 98%;
+    padding: 2rem;
+  }
+
+  @media only screen and (max-width: 700px) {
+    margin: 1rem 0;
+  }
+
+  @media only screen and (max-height: 900px) {
+    margin-top: 3rem;
+  }
+`;
 
 const Category = styled.div`
   background: ${(props) => props.theme.colors.main};
@@ -298,6 +362,11 @@ const Category = styled.div`
     transition: 0.3s;
     cursor: pointer;
   }
+
+  @media only screen and (max-width: 1200px) {
+    padding: 0 0.5rem;
+    font-size: 0.8rem;
+  }
 `;
 
 const ProductBox = styled.div`
@@ -306,6 +375,12 @@ const ProductBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+
+  @media only screen and (max-width: 1200px) {
+    font-size: 125%;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+  }
 `;
 
 const Variants = styled.div`
@@ -314,6 +389,13 @@ const Variants = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  @media only screen and (max-width: 1200px) {
+    flex-direction: row;
+    width: 95%;
+    flex-wrap: wrap;
+    margin: 0.4rem;
+  }
 `;
 
 const Materials = styled.div`

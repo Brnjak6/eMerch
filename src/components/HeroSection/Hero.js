@@ -2,10 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import Products from "./Products";
 import Recommended from "./Recommended";
+import { motion } from "framer-motion";
+import { slideAnimation } from "../../global/Animations";
 
 function Hero() {
   return (
-    <Container>
+    <Container variants={slideAnimation} initial="hidden" animate="show">
       <GridLeft>
         <Recommended />
       </GridLeft>
@@ -16,12 +18,17 @@ function Hero() {
   );
 }
 
-const Container = styled.div`
-  height: 85vh;
+const Container = styled(motion.div)`
+  min-height: 85vh;
   display: grid;
   grid-template-columns:
     [left-start] minmax(30rem, 70rem) [left-end right-start] minmax(30rem, 1fr)
     [right-end];
+
+  @media only screen and (max-width: 1200px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const GridLeft = styled.div`
@@ -38,6 +45,10 @@ const GridRight = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media only screen and (max-width: 1200px) {
+    min-height: 170vh;
+  }
 `;
 
 export default Hero;

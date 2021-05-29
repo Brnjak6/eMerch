@@ -9,6 +9,8 @@ import { OffsetContext } from "../components/OffsetContext";
 import { InputContext } from "../components/InputContext";
 import { SearchPageContext } from "../components/SearchPageContext";
 import DiscoverComponent from "../components/DiscoverComponent";
+import "../components/Navigation.scss";
+import BurgerMenu from "../components/BurgerMenu";
 
 function Navigation() {
   const [fixedNav, setfixedNav] = useState(false);
@@ -18,6 +20,7 @@ function Navigation() {
   const [page, setPage] = useContext(SearchPageContext);
   const [category, setCategory] = useState(false);
   const notInitialRender = useRef(false);
+  const [burgerActive, setBurgerActive] = useState(false);
   let history = useHistory();
 
   const encodedSearch = encodeURIComponent(
@@ -32,7 +35,7 @@ function Navigation() {
 
   useEffect(() => {
     const changeBackground = () => {
-      if (window.scrollY >= 1100) {
+      if (window.scrollY >= 1200) {
         setfixedNav(true);
       } else {
         setfixedNav(false);
@@ -51,6 +54,11 @@ function Navigation() {
 
   const submitHandler = (e) => {
     e.preventDefault();
+
+    if (!input) {
+      return alert("Please input desired item to search");
+    }
+    history.push("/search");
     setInputData("");
     setPage(1);
     fetch(urlSearch)
@@ -58,8 +66,6 @@ function Navigation() {
       .then((data) => {
         if (data.contents) {
           setInputData(JSON.parse(data.contents));
-          console.log(inputData);
-          history.push("/search");
         }
       })
       .catch(console.error);
@@ -70,6 +76,10 @@ function Navigation() {
     history.push("/search");
     setInput(data.target.innerHTML);
     setCategory(data.target.innerHTML);
+  };
+
+  const burgerHandler = () => {
+    setBurgerActive(!burgerActive);
   };
 
   useEffect(() => {
@@ -93,41 +103,62 @@ function Navigation() {
     window.scroll({ top: 0, behavior: "smooth" });
   };
 
+  useEffect(() => {
+    if (burgerActive) {
+      document.body.style.overflowY = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [burgerActive]);
+
   return (
-    <Container
-      style={fixedNav ? { position: "fixed", opacity: 0.8, top: 0 } : null}
-    >
-      <SearchBox onSubmit={submitHandler}>
-        <SearchBtn onClick={submitHandler} />
-        <Input
-          type="search"
-          placeholder="Search items......"
-          onChange={inputHandler}
-          value={input}
-          onClick={() => setInputData("")}
-        />
-      </SearchBox>
-      <Title to="/" onClick={returnToMain}>
-        Widicy
-      </Title>
-      <RightItems>
-        <Products>
-          <Discover>
-            <DiscoverComponent />
-            <Dropdown>
-              <Li onClick={(e) => searchByCategory(e)}>gardening</Li>
-              <Li onClick={(e) => searchByCategory(e)}>men coats</Li>
-              <Li onClick={(e) => searchByCategory(e)}>smart watches</Li>
-              <Li onClick={(e) => searchByCategory(e)}>car products</Li>
-            </Dropdown>
-          </Discover>
-        </Products>
-        <ToCart to={"/cart"}>
-          <CartIcon />
-        </ToCart>
-      </RightItems>
-      <BorderBottom></BorderBottom>
-    </Container>
+    <>
+      <Container
+        style={fixedNav ? { position: "fixed", opacity: 0.8, top: 0 } : null}
+      >
+        <SearchBox onSubmit={submitHandler}>
+          <SearchBtn onClick={submitHandler} />
+          <Input
+            type="search"
+            placeholder="Search items......"
+            onChange={inputHandler}
+            value={input}
+            onClick={() => setInputData("")}
+          />
+        </SearchBox>
+        <Title to="/" onClick={returnToMain}>
+          Widicy
+        </Title>
+        <RightItems>
+          <Products>
+            <Discover>
+              <DiscoverComponent />
+              <Dropdown>
+                <Li onClick={(e) => searchByCategory(e)}>gardening</Li>
+                <Li onClick={(e) => searchByCategory(e)}>men coats</Li>
+                <Li onClick={(e) => searchByCategory(e)}>smart watches</Li>
+                <Li onClick={(e) => searchByCategory(e)}>car products</Li>
+              </Dropdown>
+            </Discover>
+          </Products>
+          <ToCart to={"/cart"}>
+            <CartIcon />
+          </ToCart>
+        </RightItems>
+        <div className="burger-box" style={{ position: "absolute" }}>
+          <div
+            className={burgerActive ? "container change" : "container"}
+            onClick={() => burgerHandler()}
+          >
+            <div className="bar bar1"></div>
+            <div className="bar bar2"></div>
+            <div className="bar bar3"></div>
+          </div>
+        </div>
+        <BorderBottom></BorderBottom>
+        {burgerActive && <BurgerMenu burgerHandler={burgerHandler} />}
+      </Container>
+    </>
   );
 }
 
@@ -155,7 +186,6 @@ const RightItems = styled.div`
   position: relative;
   width: 20vw;
 `;
-
 const Dropdown = styled.ul`
   background: ${(props) => props.theme.colors.main};
   color: ${(props) => props.theme.colors.secondary};
@@ -212,6 +242,10 @@ const CartIcon = styled(Cart)`
 const ToCart = styled(Link)`
   width: fit-content;
   height: fit-content;
+
+  @media only screen and (max-width: 1200px) {
+    display: none;
+  }
 `;
 
 const SearchBtn = styled(Search)`
@@ -219,10 +253,11 @@ const SearchBtn = styled(Search)`
   height: 1.2rem;
   fill: ${(props) => props.theme.colors.secondary};
   position: absolute;
-  top: 30%;
+  top: 20%;
   opacity: 0.8;
   right: 0%;
   cursor: pointer;
+  z-index: 200;
 `;
 
 const Title = styled(Link)`
@@ -236,6 +271,10 @@ const Title = styled(Link)`
   text-decoration: none;
   color: ${(props) => props.theme.colors.third};
   text-transform: uppercase;
+
+  @media only screen and (max-width: 900px) {
+    display: none;
+  }
 `;
 
 const Products = styled.div`
@@ -245,6 +284,10 @@ const Products = styled.div`
   position: absolute;
   left: 0%;
   width: 70%;
+
+  @media only screen and (max-width: 1200px) {
+    display: none;
+  }
 `;
 
 const BorderBottom = styled.div`
@@ -255,6 +298,10 @@ const BorderBottom = styled.div`
   width: 10%;
   background: ${(props) => props.theme.colors.third};
   box-shadow: 0 -2px 20px 4px ${(props) => props.theme.colors.third};
+
+  @media only screen and (max-width: 1200px) {
+    display: none;
+  }
 `;
 
 const SearchBox = styled.form`
@@ -285,6 +332,22 @@ const SearchBox = styled.form`
     bottom: 0%;
     left: 30%;
     background: linear-gradient(to left, transparent 30%, #fff);
+  }
+
+  @media only screen and (max-width: 900px) {
+    width: 35%;
+  }
+
+  @media only screen and (max-width: 460px) {
+    width: 50%;
+
+    &:before {
+      content: none;
+    }
+
+    &:after {
+      content: none;
+    }
   }
 `;
 

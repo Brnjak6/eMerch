@@ -145,6 +145,7 @@ const EachSlide = styled.div`
 const Img = styled.img`
   width: 100%;
   height: 100%;
+  object-fit: cover;
 `;
 
 const InfoContainer = styled.div`
@@ -183,8 +184,28 @@ const Description = styled.h2`
 `;
 
 const Button = styled.button`
-  padding: 0.4rem 0.9rem;
-  border: 8px double ${(props) => props.theme.colors.secondary};
+  z-index: 51;
+  border: 9px double ${(props) => props.theme.colors.secondary};
+  background: transparent;
+  border-radius: 5% 15%;
+  padding: 0.2rem 1.1rem;
+  color: ${(props) => props.theme.colors.secondary};
+  margin: 3rem 0;
+  width: fit-content;
+  align-self: center;
+  font-family: "Rhodium Libre", serif;
+  font-size: 130%;
+
+  &:hover {
+    border: 9px double ${(props) => props.theme.colors.third};
+    background: transparent !important;
+    color: ${(props) => props.theme.colors.third};
+  }
+
+  @media only screen and (max-width: 590px) {
+    margin: 1.8rem;
+    font-size: 1rem;
+  }
 `;
 
 export default Recommended;

@@ -61,18 +61,19 @@ function Products() {
 
   return (
     <Container>
+      <Title>Trending Products</Title>
       <Product>
         <Img src={contents1?.results[0].Images[0].url_fullxfull} alt="img" />
         <Info>
           <ArrowSvg />
           <Description>Cotton Prairie Pant in OCEAN </Description>
-          <button
+          <Button
             onClick={() => {
               shopNowHandler(386355698);
             }}
           >
             Shop Now
-          </button>
+          </Button>
         </Info>
       </Product>
       <Product>
@@ -80,13 +81,13 @@ function Products() {
         <Info>
           <ArrowSvg />
           <Description>Retro Steampunk Glasses</Description>
-          <button
+          <Button
             onClick={() => {
               shopNowHandler(879403626);
             }}
           >
             Shop Now
-          </button>
+          </Button>
         </Info>
       </Product>
       <Product>
@@ -94,13 +95,13 @@ function Products() {
         <Info>
           <ArrowSvg />
           <Description>Floor Lamp - A Beautiful Wooden Floor Lamp</Description>
-          <button
+          <Button
             onClick={() => {
               shopNowHandler(495036223);
             }}
           >
             Shop Now
-          </button>
+          </Button>
         </Info>
       </Product>
     </Container>
@@ -123,6 +124,40 @@ const Product = styled.div`
   overflow: hidden;
   box-shadow: 0 0 8px;
   border-radius: 5px;
+
+  @media only screen and (max-width: 1200px) {
+    height: 40vh;
+    width: 50%;
+    margin: 1rem 0;
+  }
+
+  @media only screen and (max-width: 800px) {
+    height: 60vh;
+    width: 80%;
+    margin: 1rem 0;
+  }
+
+  @media only screen and (max-width: 550px) {
+    width: 95%;
+    height: 70vh;
+  }
+`;
+
+const Title = styled.h1`
+  width: 70%;
+  margin: 3rem 0;
+  text-align: center;
+  letter-spacing: 0.3rem;
+  font-family: "Rhodium Libre", serif;
+  display: none;
+
+  @media only screen and (max-width: 1200px) {
+    display: block;
+  }
+
+  @media only screen and (max-width: 500px) {
+    font-size: 0.6rem;
+  }
 `;
 
 const Img = styled.img`
@@ -160,17 +195,48 @@ const Info = styled.div`
   animation: cubic-bezier(0.06, 0.92, 0.83, 0.67);
 
   &:hover {
-    top: 50%;
+    top: 51%;
     ${ArrowSvg} {
       transform: rotate(360deg);
       transition: 0.3s;
     }
+  }
+
+  @media only screen and (max-width: 1200px) {
   }
 `;
 
 const Description = styled.div`
   margin-top: 1rem;
   margin-bottom: 15%;
+  text-align: center;
+
+  @media only screen and (max-width: 1200px) {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+  }
+
+  @media only screen and (max-width: 500px) {
+    font-size: 1rem;
+  }
+`;
+const Button = styled.button`
+  border: 9px double ${(props) => props.theme.colors.secondary};
+  background: transparent;
+  border-radius: 5% 15%;
+  padding: 0.2rem 1.1rem;
+  color: ${(props) => props.theme.colors.secondary};
+  margin: 3rem 0;
+  width: fit-content;
+  align-self: center;
+  font-family: "Rhodium Libre", serif;
+  font-size: 0.9rem;
+
+  &:hover {
+    border: 9px double ${(props) => props.theme.colors.third};
+    background: transparent !important;
+    color: ${(props) => props.theme.colors.third};
+  }
 `;
 
 export default Products;

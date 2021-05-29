@@ -28,6 +28,7 @@ const Title = styled.h1`
   margin: 5rem 0;
   color: ${(props) => props.theme.colors.main};
   letter-spacing: 0.4rem;
+  font-family: "Rhodium Libre", serif;
 `;
 
 const LogoSvg = styled(Flying)`
@@ -43,19 +44,19 @@ const LogoSvg = styled(Flying)`
       fill: ${(props) => props.theme.colors.main};
     }
     10% {
-      fill: cyan;
+      fill: ${(props) => props.theme.colors.third};
     }
     14% {
       fill: ${(props) => props.theme.colors.main};
     }
     24% {
-      fill: cyan;
+      fill: ${(props) => props.theme.colors.third};
     }
     34% {
       fill: ${(props) => props.theme.colors.main};
     }
     44% {
-      fill: cyan;
+      fill: ${(props) => props.theme.colors.third};
     }
     100% {
       fill: ${(props) => props.theme.colors.main};

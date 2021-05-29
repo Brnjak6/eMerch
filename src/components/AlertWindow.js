@@ -17,17 +17,17 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 500;
-  height: 85vh;
+  height: 150vh;
   width: 100%;
   background: rgba(0, 0, 0, 0.4);
 `;
 
 const Message = styled.div`
-  width: 60%;
-  height: 25%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem 3rem;
   text-align: center;
   border: 6px double ${(props) => props.theme.colors.main};
   background: ${(props) => props.theme.colors.secondary};

@@ -11,6 +11,8 @@ import { ReactComponent as DownArrow } from "../img/down-arrow.svg";
 import { OffsetContext } from "../components/OffsetContext";
 import { InputContext } from "../components/InputContext";
 import { SearchPageContext } from "../components/SearchPageContext";
+import { motion } from "framer-motion";
+import { pageAnimation } from "../global/Animations";
 
 function SearchPage() {
   const [inputData, setInputData] = useContext(InputDataContext);
@@ -170,7 +172,7 @@ function SearchPage() {
   if (!inputData) {
     return (
       <LoadContainer>
-        <HashLoader size={150} />
+        <HashLoader size={150} color={"#42748F"} />
       </LoadContainer>
     );
   } else if (inputData.results.length === 0) {
@@ -200,7 +202,11 @@ function SearchPage() {
           </NavbarHidden>
         </Navbar>
 
-        <ResultsContainer>
+        <ResultsContainer
+          variants={pageAnimation}
+          initial="hidden"
+          animate="show"
+        >
           {inputData.results.map((res) => {
             return (
               <ItemArea key={res.listing_id}>
@@ -257,7 +263,7 @@ const LoadContainer = styled.div`
   justify-content: center;
 `;
 
-const ResultsContainer = styled.div`
+const ResultsContainer = styled(motion.div)`
   width: 100vw;
   display: flex;
   flex-wrap: wrap;
@@ -294,8 +300,9 @@ const Img = styled.img`
 const Views = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
   margin-top: 0.4rem;
+  width: 100%;
 `;
 
 const ViewsSvg = styled(Eye)`
@@ -310,6 +317,9 @@ const ItemArea = styled.div`
   height: 45vh;
   margin-bottom: 6rem;
   margin: 0 2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `;
 
 const Navbar = styled.div`

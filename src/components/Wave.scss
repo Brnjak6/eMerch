@@ -3,13 +3,10 @@
   height: 100%;
   border-radius: 12px;
   box-shadow: 0 2px 30px rgba(black, 0.2);
-  background: lighten(#f0f4c3, 10%);
+  background: lighten(#000, 10%);
   position: relative;
   overflow: hidden;
   transform: translate3d(0, 0, 0);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .wave {
@@ -25,6 +22,10 @@
   transform-origin: 50% 48%;
   border-radius: 43%;
   animation: drift 3000ms infinite linear;
+
+  @media only screen and (max-width: 800px) {
+    display: none;
+  }
 }
 
 .wave.-three {
@@ -47,11 +48,15 @@
   background: linear-gradient(
     to bottom,
     rgba(#0af, 1),
-    rgba(#000, 0) 80%,
+    rgba(#fff, 0) 80%,
     rgba(white, 0.5)
   );
   z-index: 11;
   transform: translate3d(0, 0, 0);
+
+  @media only screen and (max-width: 800px) {
+    display: none;
+  }
 }
 
 .title {
@@ -70,6 +75,10 @@
   font-size: 24px;
   text-shadow: 0 1px 0 rgba(black, 0.1);
   text-indent: 0.3em;
+
+  @media only screen and (max-width: 1600px) {
+    display: none;
+  }
 }
 @keyframes drift {
   from {

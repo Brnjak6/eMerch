@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
+
 function Banner() {
+  const { pathname } = useLocation();
   const [removeBtn, setRemoveBtn] = useState(false);
 
   const removeBtnHandler = () => {
@@ -8,13 +11,15 @@ function Banner() {
   };
 
   return (
-    <Container style={removeBtn ? { display: "none" } : {}}>
-      <Button onClick={removeBtnHandler}>x</Button>
-      <p>
-        Free shipping on all orders <Line>/</Line> This weekend only{" "}
-        <Line>/</Line>
-      </p>
-    </Container>
+    <div style={pathname === "/" ? null : { display: "none" }}>
+      <Container style={removeBtn ? { display: "none" } : null}>
+        <Button onClick={removeBtnHandler}>x</Button>
+        <p>
+          Free shipping on all orders <Line>/</Line> This weekend only{" "}
+          <Line>/</Line>
+        </p>
+      </Container>
+    </div>
   );
 }
 
@@ -30,6 +35,14 @@ const Container = styled.div`
   font-weight: lighter;
   font-size: 0.9rem;
   top: 0%;
+
+  @media only screen and (max-width: 600px) {
+    height: 6vh;
+  }
+
+  @media only screen and (max-width: 410px) {
+    display: none;
+  }
 `;
 
 const Button = styled.div`

@@ -17,6 +17,10 @@ body {
     overflow-x: hidden;
     font-size: 100%;
 
+   @media only screen and (max-width: 1200px) {
+    font-size: 80%;
+  }
+
     ::-webkit-scrollbar {
   width: 10px;
 
@@ -33,8 +37,11 @@ button {
   transition: all .2s;
 
   &:hover {
-    background: #fff !important;
-    color: ${(props) => props.theme.colors.main};
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(3px);
   }
 }
 
