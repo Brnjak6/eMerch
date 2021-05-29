@@ -5,11 +5,13 @@ import { ReactComponent as Flying } from "../img/flying.svg";
 function Intro() {
   return (
     <Container>
-      <h1>Our versatility towards yours desirability is incomperable</h1>
+      <h1>Our Versatility Towards Yours Desirability Is Incomperable</h1>
       <br />
       <Title>Widicy</Title>
       <LogoSvg />
-      <h1>Everything you need</h1>
+      <h1 style={{ textAlign: "center" }}>
+        Everything You Need <br /> <br /> In One Place
+      </h1>
     </Container>
   );
 }
@@ -25,15 +27,15 @@ const Container = styled.div`
 
 const Title = styled.h1`
   font-size: 500%;
-  margin: 5rem 0;
+  margin: 4rem 0;
   color: ${(props) => props.theme.colors.main};
   letter-spacing: 0.4rem;
   font-family: "Rhodium Libre", serif;
 `;
 
 const LogoSvg = styled(Flying)`
-  width: 8rem;
-  height: 8rem;
+  width: 5rem;
+  height: 5rem;
   margin-bottom: 5rem;
   animation-name: flicker;
   animation-duration: 1s;

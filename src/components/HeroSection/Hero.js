@@ -47,7 +47,8 @@ const GridRight = styled.div`
   justify-content: center;
 
   @media only screen and (max-width: 1200px) {
-    min-height: 170vh;
+    flex-direction: column;
+    height: auto;
   }
 `;
 

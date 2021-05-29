@@ -31,7 +31,7 @@ button {
   color: ${(props) => props.theme.colors.secondary};
   background: transparent !important;
   outline: none;
-  border: 5px double ${(props) => props.theme.colors.secondary};
+  border: 5px double ${(props) => props.theme.colors.third} !important;
   font-size: 1.2rem;
   cursor: pointer;
   transition: all .2s;

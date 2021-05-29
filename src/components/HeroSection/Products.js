@@ -60,51 +60,58 @@ function Products() {
   };
 
   return (
-    <Container>
+    <>
       <Title>Trending Products</Title>
-      <Product>
-        <Img src={contents1?.results[0].Images[0].url_fullxfull} alt="img" />
-        <Info>
-          <ArrowSvg />
-          <Description>Cotton Prairie Pant in OCEAN </Description>
-          <Button
-            onClick={() => {
-              shopNowHandler(386355698);
-            }}
-          >
-            Shop Now
-          </Button>
-        </Info>
-      </Product>
-      <Product>
-        <Img src={contents2?.results[0].Images[0].url_fullxfull} alt="img" />
-        <Info>
-          <ArrowSvg />
-          <Description>Retro Steampunk Glasses</Description>
-          <Button
-            onClick={() => {
-              shopNowHandler(879403626);
-            }}
-          >
-            Shop Now
-          </Button>
-        </Info>
-      </Product>
-      <Product>
-        <Img src={contents3?.results[0].Images[0].url_fullxfull} alt="img" />
-        <Info>
-          <ArrowSvg />
-          <Description>Floor Lamp - A Beautiful Wooden Floor Lamp</Description>
-          <Button
-            onClick={() => {
-              shopNowHandler(495036223);
-            }}
-          >
-            Shop Now
-          </Button>
-        </Info>
-      </Product>
-    </Container>
+      <Container>
+        <Product>
+          <Img src={contents1?.results[0].Images[0].url_fullxfull} alt="img" />
+          <Info>
+            <ArrowSvg />
+            <Description>Cotton Prairie Pant in OCEAN </Description>
+            <Button
+              onClick={() => {
+                shopNowHandler(386355698);
+              }}
+            >
+              Shop Now
+            </Button>
+          </Info>
+          <MobileButton>Shop Now</MobileButton>
+        </Product>
+        <Product>
+          <Img src={contents2?.results[0].Images[0].url_fullxfull} alt="img" />
+          <Info>
+            <ArrowSvg />
+            <Description>Retro Steampunk Glasses</Description>
+            <Button
+              onClick={() => {
+                shopNowHandler(879403626);
+              }}
+            >
+              Shop Now
+            </Button>
+          </Info>
+          <MobileButton>Shop Now</MobileButton>
+        </Product>
+        <Product>
+          <Img src={contents3?.results[0].Images[0].url_fullxfull} alt="img" />
+          <Info>
+            <ArrowSvg />
+            <Description>
+              Floor Lamp - A Beautiful Wooden Floor Lamp
+            </Description>
+            <Button
+              onClick={() => {
+                shopNowHandler(495036223);
+              }}
+            >
+              Shop Now
+            </Button>
+          </Info>
+          <MobileButton>Shop Now</MobileButton>
+        </Product>
+      </Container>
+    </>
   );
 }
 
@@ -115,6 +122,11 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+
+  @media only screen and (max-width: 1200px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 `;
 
 const Product = styled.div`
@@ -122,13 +134,12 @@ const Product = styled.div`
   width: 85%;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 0 8px;
-  border-radius: 5px;
+  box-shadow: 0 0 3px;
   background: #000;
 
   @media only screen and (max-width: 1200px) {
-    height: 40vh;
-    width: 50%;
+    width: 20rem;
+    height: 20rem;
     margin: 1rem 0;
   }
 
@@ -145,19 +156,19 @@ const Product = styled.div`
 `;
 
 const Title = styled.h1`
-  width: 70%;
-  margin: 3rem 0;
+  width: 100%;
   text-align: center;
   letter-spacing: 0.3rem;
+  font-size: 2rem;
+  margin-top: 5rem;
   font-family: "Rhodium Libre", serif;
-  display: none;
 
-  @media only screen and (max-width: 1200px) {
-    display: block;
+  @media only screen and (min-width: 1200px) {
+    display: none;
   }
 
   @media only screen and (max-width: 500px) {
-    font-size: 0.6rem;
+    font-size: 1.8rem;
   }
 `;
 
@@ -165,6 +176,10 @@ const Img = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+
+  @media only screen and (max-width: 1200px) {
+    height: 85%;
+  }
 `;
 
 const ArrowSvg = styled(Arrow)`
@@ -176,6 +191,10 @@ const ArrowSvg = styled(Arrow)`
   height: 2rem;
   fill: ${(props) => props.theme.colors.secondary};
   transform: rotate(180deg);
+
+  @media only screen and (max-width: 1200px) {
+    display: none;
+  }
 `;
 
 const Info = styled.div`
@@ -202,8 +221,8 @@ const Info = styled.div`
       transition: 0.3s;
     }
   }
-
   @media only screen and (max-width: 1200px) {
+    display: none;
   }
 `;
 
@@ -213,21 +232,21 @@ const Description = styled.div`
   text-align: center;
 
   @media only screen and (max-width: 1200px) {
-    margin-top: 1rem;
-    font-size: 1.1rem;
+    display: none;
   }
 
   @media only screen and (max-width: 500px) {
     font-size: 1rem;
   }
 `;
+
 const Button = styled.button`
   border: 9px double ${(props) => props.theme.colors.secondary};
   background: transparent;
   border-radius: 5% 15%;
   padding: 0.2rem 1.1rem;
   color: ${(props) => props.theme.colors.secondary};
-  margin: 3rem 0;
+  margin: 2rem 0;
   width: fit-content;
   align-self: center;
   font-family: "Rhodium Libre", serif;
@@ -237,6 +256,43 @@ const Button = styled.button`
     border: 9px double ${(props) => props.theme.colors.third};
     background: transparent !important;
     color: ${(props) => props.theme.colors.third};
+  }
+
+  @media only screen and (max-width: 1200px) {
+    display: none;
+  }
+`;
+const MobileButton = styled.div`
+  position: absolute;
+  cursor: pointer;
+  color: ${(props) => props.theme.colors.secondary};
+  border: none;
+  outline: none;
+  background: ${(props) => props.theme.colors.third};
+  font-weight: lighter;
+  font-size: 1.3rem;
+  width: 100%;
+  height: 17%;
+  z-index: 200;
+  bottom: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Rhodium Libre", serif;
+
+  text-align: center;
+  transition: 0.2s;
+
+  &:hover {
+    background: #275167;
+  }
+
+  &:active {
+    transform: translateY(3px);
+  }
+
+  @media only screen and (min-width: 1200px) {
+    display: none;
   }
 `;
 

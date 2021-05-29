@@ -41,9 +41,8 @@ function CartInfo({ totalPrice }) {
 }
 
 const Container = styled.div`
-  width: 90%;
-  height: 80%;
-  border: 1px solid black;
+  width: 100%;
+  height: 100%;
   border-radius: 2%;
   position: relative;
   overflow: hidden;
@@ -51,18 +50,16 @@ const Container = styled.div`
 
   @media only screen and (max-width: 1100px) {
     height: 70vh;
-    width: 60%;
+    width: 100%;
     font-size: 120%;
   }
 
-  @media only screen and (max-width: 800px) {
-    width: 95%;
+  @media only screen and (max-width: 900px) {
     margin-top: 5rem;
+    height: 40rem;
   }
 
   @media only screen and (max-width: 550px) {
-    width: 100%;
-    border: none;
     margin-top: 9rem;
     height: 35rem;
   }
