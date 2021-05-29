@@ -18,6 +18,7 @@ Some of the technologies you can find in this project are:
   
 *CSS
   -Styled Components
+  -media queries 
   
  *JavaScript
   --React
@@ -36,3 +37,5 @@ Some of the challenges I faced: price sorting in search page, cart pricing while
 conditional rending until data is resolved...
 
 Big appreciation to "web dev web design" Discord community that is always happy to help. 
+
+Website is responsive
