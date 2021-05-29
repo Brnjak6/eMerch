@@ -228,7 +228,7 @@ const Info = styled.div`
 
 const Description = styled.div`
   margin-top: 1rem;
-  margin-bottom: 15%;
+  margin-bottom: 5%;
   text-align: center;
 
   @media only screen and (max-width: 1200px) {
