@@ -11,7 +11,7 @@ changed by users online. "Widicy" allows you to search all of them, discover the
 pricing, description, images and the option to add it to your cart where the total sum of items is added.
 
 Project was lots of fun to build in React. 
-NPM packages and React hooks simplified the built process. 
+NPM packages and React hooks simplified the process. 
 Some of the technologies you can find in this project are: 
 * HTML 
   - JSX
