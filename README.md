@@ -29,7 +29,7 @@ Some of the technologies you can find in this project are:
    - useContext
    - Route, Switch
    - Link
-   - useHistor
+   - useHistory
    - localStorage
    - Framer Motion
     
