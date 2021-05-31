@@ -19,8 +19,11 @@ Some of the technologies you can find in this project are:
 * CSS
   - Styled Components
   - media queries 
+  - flexbox
+  - grid
   
  * JavaScript
+   - ES6
    - React
   
   React:
