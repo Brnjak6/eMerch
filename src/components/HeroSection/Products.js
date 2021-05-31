@@ -188,13 +188,13 @@ const Title = styled.h1`
   }
 `;
 
-const Img = styled(ReactImageAppear)`
+const Img = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
 
   @media only screen and (max-width: 1200px) {
-    position: absolute;
+    height: 85%;
   }
 `;
 

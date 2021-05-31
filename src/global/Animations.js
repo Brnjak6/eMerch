@@ -26,7 +26,7 @@ export const slideAnimation = {
 export const slideToLeft = {
   hidden: {
     opacity: 0,
-    x: 300,
+    x: 200,
   },
   show: {
     opacity: 1,
@@ -39,7 +39,7 @@ export const slideToLeft = {
 export const slideToRight = {
   hidden: {
     opacity: 0,
-    x: -300,
+    x: -200,
   },
   show: {
     opacity: 1,

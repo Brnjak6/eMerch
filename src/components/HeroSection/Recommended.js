@@ -105,12 +105,7 @@ function Recommended() {
     >
       <Fade {...properties}>
         <EachSlide>
-          <Img
-            src={contents1?.results[0].Images[0].url_fullxfull}
-            alt="img"
-            animation="blurIn"
-            animationDuration=".5s"
-          />
+          <Img src={contents1?.results[0].Images[0].url_fullxfull} alt="img" />
           <Overlay />
           <InfoContainer>
             <Description>Bedding items</Description>
@@ -121,12 +116,7 @@ function Recommended() {
           </InfoContainer>
         </EachSlide>
         <EachSlide>
-          <Img
-            src={contents2?.results[0].Images[0].url_fullxfull}
-            alt="img"
-            animation="blurIn"
-            animationDuration=".5s"
-          />
+          <Img src={contents2?.results[0].Images[0].url_fullxfull} alt="img" />
           <Overlay />
           <InfoContainer>
             <Description>Modern Art</Description>
@@ -137,12 +127,7 @@ function Recommended() {
           </InfoContainer>
         </EachSlide>
         <EachSlide>
-          <Img
-            src={contents3?.results[0].Images[0].url_fullxfull}
-            alt="img"
-            animation="blurIn"
-            animationDuration=".5s"
-          />
+          <Img src={contents3?.results[0].Images[0].url_fullxfull} alt="img" />
           <Overlay />
           <InfoContainer>
             <Description>Outdoor</Description>
@@ -166,10 +151,14 @@ const EachSlide = styled.div`
   justify-content: center;
 `;
 
-const Img = styled(ReactImageAppear)`
+const Img = styled.img`
   width: 100vw;
   height: 100vh;
   object-fit: contain;
+
+  @media only screen and (max-width: 590px) {
+    object-fit: cover;
+  }
 `;
 
 const InfoContainer = styled.div`

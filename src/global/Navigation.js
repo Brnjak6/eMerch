@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ReactComponent as Search } from "../img/search.svg";
 import { ReactComponent as Cart } from "../img/shopping-cart.svg";
+import { ReactComponent as Home } from "../img/home.svg";
 import { InputDataContext } from "../components/InputDataContext";
 import { OffsetContext } from "../components/OffsetContext";
 import { InputContext } from "../components/InputContext";
@@ -116,6 +117,9 @@ function Navigation() {
       <Container
         style={fixedNav ? { position: "fixed", opacity: 0.8, top: 0 } : null}
       >
+        <HomeBox to="/" onClick={returnToMain}>
+          <HomeSvg />
+        </HomeBox>
         <SearchBox onSubmit={submitHandler}>
           <SearchBtn onClick={submitHandler} />
           <Input
@@ -241,6 +245,27 @@ const CartIcon = styled(Cart)`
   width: 1.6rem;
   cursor: pointer;
   float: right;
+`;
+
+const HomeSvg = styled(Home)`
+  fill: ${(props) => props.theme.colors.secondary};
+  height: 1.8rem;
+  width: 1.8rem;
+  cursor: pointer;
+  float: right;
+  @media only screen and (min-width: 900px) {
+    display: none;
+  }
+`;
+
+const HomeBox = styled(Link)`
+  height: 100%;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0%;
 `;
 
 const ToCart = styled(Link)`
