@@ -8,52 +8,18 @@ import { slideAnimation } from "../../global/Animations";
 function Hero() {
   return (
     <Container variants={slideAnimation} initial="hidden" animate="show">
-      <GridLeft>
-        <Recommended />
-      </GridLeft>
-      <GridRight>
-        <Products />
-      </GridRight>
+      <Recommended />
+      <Products />
     </Container>
   );
 }
 
 const Container = styled(motion.div)`
   min-height: 85vh;
-  display: grid;
-  grid-template-columns:
-    [left-start] minmax(30rem, 70rem) [left-end right-start] minmax(30rem, 1fr)
-    [right-end];
-
-  @media only screen and (max-width: 1200px) {
-    display: flex;
-    flex-direction: column;
-  }
-`;
-
-const GridLeft = styled.div`
-  height: 70vh;
-  background: #000;
-  grid-column: left-start / left-end;
-  position: relative;
-  box-shadow: 0 0 5px #000;
-
-  @media only screen and (max-width: 1200px) {
-    margin-bottom: 5rem;
-  }
-`;
-
-const GridRight = styled.div`
-  height: 85vh;
-  grid-column: right-start / right-end;
   display: flex;
-  align-items: center;
-  justify-content: center;
-
-  @media only screen and (max-width: 1200px) {
-    flex-direction: column;
-    height: auto;
-  }
+  flex-direction: column;
 `;
+
+// Design recreated
 
 export default Hero;

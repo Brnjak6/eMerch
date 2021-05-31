@@ -13,6 +13,7 @@ import { InputContext } from "../components/InputContext";
 import { SearchPageContext } from "../components/SearchPageContext";
 import { motion } from "framer-motion";
 import { pageAnimation } from "../global/Animations";
+import ReactImageAppear from "react-image-appear";
 
 function SearchPage() {
   const [inputData, setInputData] = useContext(InputDataContext);
@@ -217,7 +218,12 @@ function SearchPage() {
                         ? res.title.substring(0, 25) + "..."
                         : res.title}
                     </Title>
-                    <Img src={res.Images[0].url_170x135} alt="img" />
+                    <Img
+                      src={res.Images[0].url_fullxfull}
+                      alt="img"
+                      animation="blurIn"
+                      animationDuration=".5s"
+                    />
                     <Price>${res.price}</Price>
                   </Front>
                   <Hover>
@@ -285,12 +291,16 @@ const Hover = styled.div`
 
 const Button = styled.button`
   transition: 0.3s all;
-  color: ${(props) => props.theme.colors.secondary};
-  background: ${(props) => props.theme.colors.main} !important;
-  border: 5px double ${(props) => props.theme.colors.main};
+  color: ${(props) => props.theme.colors.main};
+  background: ${(props) => props.theme.colors.secondary} !important;
+  border: 5px double ${(props) => props.theme.colors.secondary} !important;
+
+  &:hover {
+    border: 5px double ${(props) => props.theme.colors.third} !important;
+  }
 `;
 
-const Img = styled.img`
+const Img = styled(ReactImageAppear)`
   position: absolute;
   width: 100%;
   height: 85%;
@@ -313,8 +323,8 @@ const ViewsSvg = styled(Eye)`
 `;
 
 const ItemArea = styled.div`
-  width: 20rem;
-  height: 45vh;
+  width: 24rem;
+  height: 55vh;
   margin-bottom: 6rem;
   margin: 0 2rem;
   display: flex;
@@ -391,19 +401,14 @@ const ArrowBtn = styled(DownArrow)`
 const ItemBox = styled.div`
   width: 90%;
   height: 65%;
-
   position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  backdrop-filter: blur(5px);
-  background-color: rgba(0, 0, 0, 0.075);
-  box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
-  border: 2px rgba(255, 255, 255, 0.4) solid;
-  border-bottom: 2px rgba(40, 40, 40, 0.35) solid;
-  border-right: 2px rgba(40, 40, 40, 0.35) solid;
-
+  background: #141e30;
+  background: -webkit-linear-gradient(to right, #243b55, #141e30);
+  background: linear-gradient(to right, #243b55, #141e30);
   &:hover {
     ${Hover} {
       opacity: 1;

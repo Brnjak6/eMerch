@@ -35,7 +35,7 @@ function Navigation() {
 
   useEffect(() => {
     const changeBackground = () => {
-      if (window.scrollY >= 1200) {
+      if (window.scrollY >= 1100) {
         setfixedNav(true);
       } else {
         setfixedNav(false);
@@ -165,7 +165,7 @@ function Navigation() {
 const Container = styled.div`
   z-index: 500;
   width: 100%;
-  height: 10vh;
+  height: 5.2rem;
   padding: 0 5rem;
   font-family: "Rhodium Libre", serif;
   background: ${(props) => props.theme.colors.navigation};
@@ -179,6 +179,10 @@ const Container = styled.div`
   &:hover {
     opacity: 1 !important;
     transition: 0.2s;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    height: 4rem;
   }
 `;
 
@@ -233,8 +237,8 @@ const Discover = styled.div`
 
 const CartIcon = styled(Cart)`
   fill: white;
-  height: 1.8rem;
-  width: 1.8rem;
+  height: 1.6rem;
+  width: 1.6rem;
   cursor: pointer;
   float: right;
 `;
@@ -316,22 +320,22 @@ const SearchBox = styled.form`
   &:before {
     content: "";
     width: 100%;
-    height: 3px;
+    height: 2px;
     top: 0%;
     left: -80%;
-    background: linear-gradient(to right, transparent 30%, #fff);
+    background: linear-gradient(to right, transparent 30%, #42748f);
     position: absolute;
   }
 
   &:after {
     content: "";
     width: 100%;
-    height: 3px;
+    height: 2px;
     background: ${(props) => props.theme.colors.third};
     position: absolute;
     bottom: 0%;
     left: 30%;
-    background: linear-gradient(to left, transparent 30%, #fff);
+    background: linear-gradient(to left, transparent 30%, #42748f);
   }
 
   @media only screen and (max-width: 900px) {

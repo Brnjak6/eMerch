@@ -6,6 +6,7 @@ import { ProductContext } from "../ProductContext";
 import { InputDataContext } from "../InputDataContext";
 import { useHistory } from "react-router-dom";
 import { InputContext } from "../InputContext";
+import ReactImageAppear from "react-image-appear";
 
 function Recommended() {
   const [contents1, setContents1] = useState(null);
@@ -30,11 +31,11 @@ function Recommended() {
   const url1 = `https://api.allorigins.win/get?url=${encoded1}`;
 
   const encoded2 = encodeURIComponent(
-    `https://openapi.etsy.com/v2/listings/958578813?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
+    `https://openapi.etsy.com/v2/listings/685284784?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
   );
   const url2 = `https://api.allorigins.win/get?url=${encoded2}`;
   const encoded3 = encodeURIComponent(
-    `https://openapi.etsy.com/v2/listings/971993404?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
+    `https://openapi.etsy.com/v2/listings/957322104?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
   );
   const url3 = `https://api.allorigins.win/get?url=${encoded3}`;
 
@@ -97,10 +98,19 @@ function Recommended() {
   return !contents3 ? (
     <h2>Loading error</h2>
   ) : (
-    <div>
+    <div
+      style={{
+        boxShadow: "0px 4px 10px 0px #000000",
+      }}
+    >
       <Fade {...properties}>
         <EachSlide>
-          <Img src={contents1?.results[0].Images[0].url_fullxfull} alt="img" />
+          <Img
+            src={contents1?.results[0].Images[0].url_fullxfull}
+            alt="img"
+            animation="blurIn"
+            animationDuration=".5s"
+          />
           <Overlay />
           <InfoContainer>
             <Description>Bedding items</Description>
@@ -111,22 +121,32 @@ function Recommended() {
           </InfoContainer>
         </EachSlide>
         <EachSlide>
-          <Img src={contents2?.results[0].Images[0].url_fullxfull} alt="img" />
+          <Img
+            src={contents2?.results[0].Images[0].url_fullxfull}
+            alt="img"
+            animation="blurIn"
+            animationDuration=".5s"
+          />
           <Overlay />
           <InfoContainer>
-            <Description>Outdoor items</Description>
-            <Button onClick={() => searchByCategory("outdoor")}>
+            <Description>Modern Art</Description>
+            <Button onClick={() => searchByCategory("modern art")}>
               Shop now
             </Button>
             <p>TRENDING THIS WEEK</p>
           </InfoContainer>
         </EachSlide>
         <EachSlide>
-          <Img src={contents3?.results[0].Images[0].url_fullxfull} alt="img" />
+          <Img
+            src={contents3?.results[0].Images[0].url_fullxfull}
+            alt="img"
+            animation="blurIn"
+            animationDuration=".5s"
+          />
           <Overlay />
           <InfoContainer>
-            <Description>Wall Objects</Description>
-            <Button onClick={() => searchByCategory("wall poster")}>
+            <Description>Outdoor</Description>
+            <Button onClick={() => searchByCategory("outdoor")}>
               Shop now
             </Button>
             <p>TRENDING THIS WEEK</p>
@@ -138,14 +158,18 @@ function Recommended() {
 }
 
 const EachSlide = styled.div`
-  width: 100%;
-  height: 85vh;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
-const Img = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+const Img = styled(ReactImageAppear)`
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain;
 `;
 
 const InfoContainer = styled.div`
@@ -163,7 +187,6 @@ const InfoContainer = styled.div`
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column;
-  overflow: hidden;
 `;
 
 const Overlay = styled.div`

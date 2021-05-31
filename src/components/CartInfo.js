@@ -43,10 +43,10 @@ function CartInfo({ totalPrice }) {
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  border-radius: 2%;
   position: relative;
   overflow: hidden;
   font-family: "Rhodium Libre", serif;
+  font-weight: lighter;
 
   @media only screen and (max-width: 1100px) {
     height: 70vh;
@@ -111,9 +111,10 @@ const Button = styled.button`
   width: fit-content;
   align-self: center;
 
-  &:hover {
+  &:focus {
     background: #000 !important;
     color: #fff;
+    opacity: 0.3 !important;
   }
 
   @media only screen and (max-width: 800px) {

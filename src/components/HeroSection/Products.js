@@ -60,7 +60,7 @@ function Products() {
   };
 
   return (
-    <>
+    <FlexColumn>
       <Title>Trending Products</Title>
       <Container>
         <Product>
@@ -76,7 +76,7 @@ function Products() {
               Shop Now
             </Button>
           </Info>
-          <MobileButton>Shop Now</MobileButton>
+          <MobileButton>Details</MobileButton>
         </Product>
         <Product>
           <Img src={contents2?.results[0].Images[0].url_fullxfull} alt="img" />
@@ -91,7 +91,7 @@ function Products() {
               Shop Now
             </Button>
           </Info>
-          <MobileButton>Shop Now</MobileButton>
+          <MobileButton>Details</MobileButton>
         </Product>
         <Product>
           <Img src={contents3?.results[0].Images[0].url_fullxfull} alt="img" />
@@ -108,34 +108,37 @@ function Products() {
               Shop Now
             </Button>
           </Info>
-          <MobileButton>Shop Now</MobileButton>
+          <MobileButton>Details</MobileButton>
         </Product>
       </Container>
-    </>
+    </FlexColumn>
   );
 }
 
+const FlexColumn = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
 const Container = styled.div`
   width: 100%;
-  height: 95%;
   display: flex;
-  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-
-  @media only screen and (max-width: 1200px) {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
+  flex-direction: row;
+  flex-wrap: wrap;
 `;
 
 const Product = styled.div`
-  height: 32%;
-  width: 85%;
+  height: 25vh;
+  width: 28rem;
   position: relative;
   overflow: hidden;
   box-shadow: 0 0 3px;
   background: #000;
+  margin: 1rem;
 
   @media only screen and (max-width: 1200px) {
     width: 20rem;
@@ -160,12 +163,9 @@ const Title = styled.h1`
   text-align: center;
   letter-spacing: 0.3rem;
   font-size: 2rem;
-  margin: 6rem;
+  margin: 5rem 0;
+  text-transform: uppercase;
   font-family: "Rhodium Libre", serif;
-
-  @media only screen and (min-width: 1200px) {
-    display: none;
-  }
 
   @media only screen and (max-width: 500px) {
     font-size: 1.8rem;

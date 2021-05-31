@@ -12,8 +12,7 @@ const GlobalStyle = createGlobalStyle`
 
 body {
     min-height: 100vh;
-   font-family: 'Poppins', sans-serif;
-   background: url(${htmlbg});
+    font-family: 'Work Sans', sans-serif;
     overflow-x: hidden;
     font-size: 100%;
 

@@ -21,6 +21,7 @@ function Main() {
 const Container = styled.div`
   min-height: 85vh;
   background: ${(props) => props.theme.colors.secondary};
+  overflow-x: hidden;
 `;
 
 export default Main;

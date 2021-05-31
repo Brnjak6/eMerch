@@ -39,7 +39,7 @@ function Cart() {
     <Container variants={pageAnimation} initial="hidden" animate="show">
       <GridLeft>
         <SelectedItems>
-          <h2>Products in cart</h2>
+          <CartTitle>Products in cart</CartTitle>
           <Line />
           <Products>
             {itemsInCart.map((item) => (
@@ -79,7 +79,7 @@ const Container = styled(motion.div)`
   @media only screen and (max-width: 1100px) {
     display: flex;
     flex-direction: column;
-    background: ${(props) => props.theme.colors.transparent};
+    background: ${(props) => props.theme.colors.secondary};
   }
 `;
 
@@ -90,7 +90,7 @@ const GridLeft = styled.div`
 `;
 
 const GridRight = styled.div`
-  height: 85vh;
+  height: 91vh;
   grid-column: right-start / right-end;
   display: flex;
   align-items: center;
@@ -176,7 +176,8 @@ const Product = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 115%;
+  font-size: 1.3rem;
+
   display: flex;
   flex-wrap: wrap;
   text-align: center;
@@ -232,6 +233,16 @@ const Numbers = styled.div`
     line-height: 4rem;
     width: 100%;
   }
+`;
+
+const CartTitle = styled.div`
+  font-weight: lighter;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  text-transform: uppercase;
+  padding: 0.5rem;
 `;
 
 export default Cart;

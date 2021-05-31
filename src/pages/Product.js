@@ -291,7 +291,8 @@ const Button = styled.button`
   transition: 0.3s all;
   color: ${(props) => props.theme.colors.secondary};
   background: ${(props) => props.theme.colors.main} !important;
-  border: 5px double ${(props) => props.theme.colors.main};
+  border: none !important;
+  padding: 0.5rem 1rem;
 
   &:hover {
     background: ${(props) => props.theme.colors.main} !important;
