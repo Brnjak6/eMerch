@@ -330,6 +330,7 @@ const ItemArea = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  transition: visibility 2s;
 `;
 
 const Navbar = styled.div`

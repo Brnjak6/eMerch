@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { ReactComponent as Arrow } from "../../img/down-arrow.svg";
 import { useHistory } from "react-router-dom";
 import { ProductContext } from "../ProductContext";
+import ReactImageAppear from "react-image-appear";
 
 function Products() {
   const [contents1, setContents1] = useState(null);
@@ -64,7 +65,12 @@ function Products() {
       <Title>Trending Products</Title>
       <Container>
         <Product>
-          <Img src={contents1?.results[0].Images[0].url_fullxfull} alt="img" />
+          <Img
+            src={contents1?.results[0].Images[0].url_fullxfull}
+            alt="img"
+            animation="blurIn"
+            animationDuration=".5s"
+          />
           <Info>
             <ArrowSvg />
             <Description>Cotton Prairie Pant in OCEAN </Description>
@@ -79,7 +85,12 @@ function Products() {
           <MobileButton>Details</MobileButton>
         </Product>
         <Product>
-          <Img src={contents2?.results[0].Images[0].url_fullxfull} alt="img" />
+          <Img
+            src={contents2?.results[0].Images[0].url_fullxfull}
+            alt="img"
+            animation="blurIn"
+            animationDuration=".5s"
+          />
           <Info>
             <ArrowSvg />
             <Description>Retro Steampunk Glasses</Description>
@@ -94,7 +105,12 @@ function Products() {
           <MobileButton>Details</MobileButton>
         </Product>
         <Product>
-          <Img src={contents3?.results[0].Images[0].url_fullxfull} alt="img" />
+          <Img
+            src={contents3?.results[0].Images[0].url_fullxfull}
+            alt="img"
+            animation="blurIn"
+            animationDuration=".5s"
+          />
           <Info>
             <ArrowSvg />
             <Description>
@@ -172,13 +188,13 @@ const Title = styled.h1`
   }
 `;
 
-const Img = styled.img`
+const Img = styled(ReactImageAppear)`
   width: 100%;
   height: 100%;
   object-fit: cover;
 
   @media only screen and (max-width: 1200px) {
-    height: 85%;
+    position: absolute;
   }
 `;
 
