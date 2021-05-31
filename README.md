@@ -11,28 +11,31 @@ changed by users online. "Widicy" allows you to search all of them, discover the
 pricing, description, images and the option to add it to your cart where the total sum of items is added.
 
 Project was lots of fun to build in React. 
-NPM packages and React hooks simplified the built process. 
+NPM packages and React hooks simplified the process. 
 Some of the technologies you can find in this project are: 
 * HTML 
   - JSX
   
-*CSS
-  -Styled Components
+* CSS
+  - Styled Components
+  - media queries 
   
- *JavaScript
-  --React
+ * JavaScript
+   - React
   
   React:
-    - useState
-    - useEffect
-    - useContext
-    - Route, Switch
-    - Link
-    - useHistory
-    - localStorage
-    - Framer Motion
+   - useState
+   - useEffect
+   - useContext
+   - Route, Switch
+   - Link
+   - useHistory
+   - localStorage
+   - Framer Motion
     
 Some of the challenges I faced: price sorting in search page, cart pricing while lifting state up in React components,
 conditional rending until data is resolved...
 
 Big appreciation to "web dev web design" Discord community that is always happy to help. 
+
+Website is responsive
