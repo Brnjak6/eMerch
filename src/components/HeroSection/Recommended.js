@@ -6,13 +6,12 @@ import { ProductContext } from "../ProductContext";
 import { InputDataContext } from "../InputDataContext";
 import { useHistory } from "react-router-dom";
 import { InputContext } from "../InputContext";
-import ReactImageAppear from "react-image-appear";
+import HashLoader from "react-spinners/HashLoader";
 
 function Recommended() {
   const [contents1, setContents1] = useState(null);
   const [contents2, setContents2] = useState(null);
   const [contents3, setContents3] = useState(null);
-  const [product, setProduct] = useContext(ProductContext);
   const [category, setCategory] = useState(false);
   const [inputData, setInputData] = useContext(InputDataContext);
   const [input, setInput] = useContext(InputContext);
@@ -96,7 +95,9 @@ function Recommended() {
   };
 
   return !contents3 ? (
-    <h2>Loading error</h2>
+    <LoadContainer>
+      <HashLoader size={150} color={"#42748F"} />
+    </LoadContainer>
   ) : (
     <div
       style={{

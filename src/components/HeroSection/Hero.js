@@ -3,11 +3,11 @@ import styled from "styled-components";
 import Products from "./Products";
 import Recommended from "./Recommended";
 import { motion } from "framer-motion";
-import { slideAnimation } from "../../global/Animations";
+import { pageAnimation } from "../../global/Animations";
 
 function Hero() {
   return (
-    <Container variants={slideAnimation} initial="hidden" animate="show">
+    <Container variants={pageAnimation} initial="hidden" animate="show">
       <Recommended />
       <Products />
     </Container>
