@@ -13,11 +13,8 @@ function AlertWindow(props) {
 
 const Container = styled.div`
   position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   z-index: 500;
-  height: 150vh;
+  height: 200vh;
   width: 100%;
   background: rgba(0, 0, 0, 0.4);
 `;

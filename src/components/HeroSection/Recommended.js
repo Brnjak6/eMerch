@@ -2,15 +2,15 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import { Fade } from "react-slideshow-image";
 import styled from "styled-components";
 import "react-slideshow-image/dist/styles.css";
-import { ProductContext } from "../ProductContext";
 import { InputDataContext } from "../InputDataContext";
 import { useHistory } from "react-router-dom";
 import { InputContext } from "../InputContext";
 import HashLoader from "react-spinners/HashLoader";
+import modernArt from "../../img/modernArt.jpg";
+import outdoor from "../../img/outdoor.jpg";
 
 function Recommended() {
   const [contents1, setContents1] = useState(null);
-  const [contents2, setContents2] = useState(null);
   const [contents3, setContents3] = useState(null);
   const [category, setCategory] = useState(false);
   const [inputData, setInputData] = useContext(InputDataContext);
@@ -29,10 +29,6 @@ function Recommended() {
   );
   const url1 = `https://api.allorigins.win/get?url=${encoded1}`;
 
-  const encoded2 = encodeURIComponent(
-    `https://openapi.etsy.com/v2/listings/685284784?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
-  );
-  const url2 = `https://api.allorigins.win/get?url=${encoded2}`;
   const encoded3 = encodeURIComponent(
     `https://openapi.etsy.com/v2/listings/957322104?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
   );
@@ -44,15 +40,6 @@ function Recommended() {
       .then((data) => {
         if (data.contents) {
           setContents1(JSON.parse(data.contents));
-        }
-      })
-      .catch(console.error);
-
-    fetch(url2)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.contents) {
-          setContents2(JSON.parse(data.contents));
         }
       })
       .catch(console.error);
@@ -117,7 +104,7 @@ function Recommended() {
           </InfoContainer>
         </EachSlide>
         <EachSlide>
-          <Img src={contents2?.results[0].Images[0].url_fullxfull} alt="img" />
+          <Img src={modernArt} alt="img" />
           <Overlay />
           <InfoContainer>
             <Description>Modern Art</Description>
@@ -128,7 +115,7 @@ function Recommended() {
           </InfoContainer>
         </EachSlide>
         <EachSlide>
-          <Img src={contents3?.results[0].Images[0].url_fullxfull} alt="img" />
+          <Img src={outdoor} alt="img" />
           <Overlay />
           <InfoContainer>
             <Description>Outdoor</Description>
@@ -143,6 +130,14 @@ function Recommended() {
   );
 }
 
+const LoadContainer = styled.div`
+  width: 100vw;
+  height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const EachSlide = styled.div`
   width: 100vw;
   height: 100vh;
@@ -153,9 +148,10 @@ const EachSlide = styled.div`
 `;
 
 const Img = styled.img`
-  width: 100vw;
-  height: 100vh;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 
   @media only screen and (max-width: 590px) {
     object-fit: cover;

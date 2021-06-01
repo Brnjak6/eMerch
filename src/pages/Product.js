@@ -19,6 +19,7 @@ function SelectedProduct() {
   const [inputData, setInputData] = useContext(InputDataContext);
   const [itemsInCart, setItemsInCart] = useContext(ItemsInCartContext);
   const [category, setCategory] = useState(false);
+  const [error, setError] = useState(null);
   const notInitialRender = useRef(false);
   const [alertMessage, setAlertMessage] = useState("");
   let history = useHistory();
@@ -81,7 +82,7 @@ function SelectedProduct() {
             setInputData(JSON.parse(data.contents));
           }
         })
-        .catch(console.error);
+        .catch(console.error && setError(error));
     } else {
       notInitialRender.current = true;
     }
@@ -113,98 +114,105 @@ function SelectedProduct() {
     setAlertMessage("");
   };
 
-  return !fetched ? (
+  if (!fetched) {
+    return (
+      <LoadContainer>
+        <HashLoader size={150} color={"#42748F"} />
+      </LoadContainer>
+    );
+  } else if (error) {
     <LoadContainer>
-      <HashLoader size={150} color={"#42748F"} />
-    </LoadContainer>
-  ) : (
-    <Container>
-      <ResultItem>
-        <Title>{fetched.results[0].title}</Title>
-        <Line />
-        <ProductBox>
-          <InfoBox>
-            <PriceBox>
-              <Price>€{fetched.results[0].price}</Price>
-              <Pgraph>Taxes included</Pgraph>
-            </PriceBox>
-            <ButtonBox>
-              <Button onClick={addToCart}>Add To Cart</Button>
-              <p style={{ fontSize: "90%" }}>
-                {fetched.results[0].quantity * 1 < 5
-                  ? `Only ${fetched.results[0].quantity} left`
-                  : `${fetched.results[0].quantity} more left`}
-              </p>
-            </ButtonBox>
-            <Materials>
-              {fetched.results[0].materials.length < 1 ? null : (
-                <p>
-                  Made out of: <br /> {fetched.results[0].materials[0]}
+      <h1>{error}</h1>
+    </LoadContainer>;
+  } else {
+    return (
+      <Container>
+        <ResultItem>
+          <Title>{fetched.results[0].title}</Title>
+          <Line />
+          <ProductBox>
+            <InfoBox>
+              <PriceBox>
+                <Price>€{fetched.results[0].price}</Price>
+                <Pgraph>Taxes included</Pgraph>
+              </PriceBox>
+              <ButtonBox>
+                <Button onClick={addToCart}>Add To Cart</Button>
+                <p style={{ fontSize: "90%" }}>
+                  {fetched.results[0].quantity * 1 < 5
+                    ? `Only ${fetched.results[0].quantity} left`
+                    : `${fetched.results[0].quantity} more left`}
                 </p>
-              )}
-            </Materials>
+              </ButtonBox>
+              <Materials>
+                {fetched.results[0].materials.length < 1 ? null : (
+                  <p>
+                    Made out of: <br /> {fetched.results[0].materials[0]}
+                  </p>
+                )}
+              </Materials>
 
-            <Description>
-              {fetched.results[0].description.substring(0, 250) + "..."}{" "}
-              <ReadMore onClick={() => setReadMore(true)}>Read More</ReadMore>
-            </Description>
-            <Categories>
-              {fetched.results[0].taxonomy_path.map((category) => (
-                <Category
-                  key={Math.random()}
-                  onClick={(e) => searchByCategory(e)}
-                >
-                  {category}
-                </Category>
-              ))}
-            </Categories>
-          </InfoBox>
-          <Pictures>
-            <Image src={activeImage} />
-            <Variants>
-              {fetched.results[0].Images.map((img) => (
-                <div key={img.listing_image_id}>
-                  <ExtraImg
-                    src={img.url_fullxfull}
-                    onClick={() => setActiveImage(img.url_fullxfull)}
-                    style={
-                      img.url_fullxfull === activeImage
-                        ? { border: "8px double black" }
-                        : null
-                    }
-                  />
-                </div>
-              ))}
-            </Variants>
-          </Pictures>
-        </ProductBox>
-      </ResultItem>
-      {readMore ? (
-        <ReadMoreModal
-          description={fetched.results[0].description}
-          closeModal={closeModal}
-        />
-      ) : (
-        false
-      )}
-      {alertMessage.length > 2 && (
-        <AlertWindow
-          message={alertMessage}
-          closeAlertMessage={closeAlertMessage}
-        />
-      )}
-    </Container>
-  );
+              <Description>
+                {fetched.results[0].description.substring(0, 250) + "..."}{" "}
+                <ReadMore onClick={() => setReadMore(true)}>Read More</ReadMore>
+              </Description>
+              <Categories>
+                {fetched.results[0].taxonomy_path.map((category) => (
+                  <Category
+                    key={Math.random()}
+                    onClick={(e) => searchByCategory(e)}
+                  >
+                    {category}
+                  </Category>
+                ))}
+              </Categories>
+            </InfoBox>
+            <Pictures>
+              <Image src={activeImage} />
+              <Variants>
+                {fetched.results[0].Images.map((img) => (
+                  <div key={img.listing_image_id}>
+                    <ExtraImg
+                      src={img.url_fullxfull}
+                      onClick={() => setActiveImage(img.url_fullxfull)}
+                      style={
+                        img.url_fullxfull === activeImage
+                          ? { border: "8px double black" }
+                          : null
+                      }
+                    />
+                  </div>
+                ))}
+              </Variants>
+            </Pictures>
+          </ProductBox>
+        </ResultItem>
+        {readMore ? (
+          <ReadMoreModal
+            description={fetched.results[0].description}
+            closeModal={closeModal}
+          />
+        ) : (
+          false
+        )}
+        {alertMessage.length > 2 && (
+          <AlertWindow
+            message={alertMessage}
+            closeAlertMessage={closeAlertMessage}
+          />
+        )}
+      </Container>
+    );
+  }
 }
 
 const Container = styled.div`
   height: 85vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
   font-size: 125%;
-  overflow-x: hidden;
 
   @media only screen and (max-width: 1200px) {
     font-size: 125%;

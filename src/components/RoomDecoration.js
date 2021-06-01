@@ -4,94 +4,18 @@ import { useHistory } from "react-router-dom";
 import { ProductContext } from "../components/ProductContext";
 import HashLoader from "react-spinners/HashLoader";
 import { ReactComponent as Dollar } from "../img/dollar.svg";
+import { enrichingSet } from "./Data";
 
 function RoomDecoration() {
   const [product, setProduct] = useContext(ProductContext);
-  const [contentLoaded, setContentLoaded] = useState(false);
-  const [contents1, setContents1] = useState(null);
-  const [contents2, setContents2] = useState(null);
-  const [contents3, setContents3] = useState(null);
-  const [contents4, setContents4] = useState(null);
-  const [contents5, setContents5] = useState(null);
-  const [contents6, setContents6] = useState(null);
   let history = useHistory();
-
-  const encoded1 = encodeURIComponent(
-    `https://openapi.etsy.com/v2/listings/642136027?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
-  );
-  const url1 = `https://api.allorigins.win/get?url=${encoded1}`;
-
-  const encoded2 = encodeURIComponent(
-    `https://openapi.etsy.com/v2/listings/935071104?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
-  );
-  const url2 = `https://api.allorigins.win/get?url=${encoded2}`;
-
-  const encoded3 = encodeURIComponent(
-    `https://openapi.etsy.com/v2/listings/949303486?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
-  );
-  const url3 = `https://api.allorigins.win/get?url=${encoded3}`;
-
-  const encoded4 = encodeURIComponent(
-    `https://openapi.etsy.com/v2/listings/894696520?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
-  );
-  const url4 = `https://api.allorigins.win/get?url=${encoded4}`;
-
-  const encoded5 = encodeURIComponent(
-    `https://openapi.etsy.com/v2/listings/618214338?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
-  );
-  const url5 = `https://api.allorigins.win/get?url=${encoded5}`;
-
-  const encoded6 = encodeURIComponent(
-    `https://openapi.etsy.com/v2/listings/880690644?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
-  );
-  const url6 = `https://api.allorigins.win/get?url=${encoded6}`;
-
-  useEffect(() => {
-    fetch(url1)
-      .then((response) => response.json())
-      .then((data) => setContents1(JSON.parse(data.contents).results[0]))
-      .catch(console.error);
-    fetch(url2)
-      .then((response) => response.json())
-      .then((data) => setContents2(JSON.parse(data.contents).results[0]))
-      .catch(console.error);
-    fetch(url3)
-      .then((response) => response.json())
-      .then((data) => setContents3(JSON.parse(data.contents).results[0]))
-      .catch(console.error);
-    fetch(url4)
-      .then((response) => response.json())
-      .then((data) => setContents4(JSON.parse(data.contents).results[0]))
-      .catch(console.error);
-    fetch(url5)
-      .then((response) => response.json())
-      .then((data) => setContents5(JSON.parse(data.contents).results[0]))
-      .catch(console.error);
-    fetch(url6)
-      .then((response) => response.json())
-      .then((data) => setContents6(JSON.parse(data.contents).results[0]))
-      .catch(console.error);
-  }, []);
-
-  useEffect(() => {
-    if (
-      contents1 &&
-      contents2 &&
-      contents3 &&
-      contents4 &&
-      contents5 &&
-      contents6
-    ) {
-      setContentLoaded(true);
-    }
-  }, [contents1, contents2, contents3, contents4, contents5, contents6]);
 
   const shopNowHandler = (data) => {
     setProduct(data);
     history.push("/product");
   };
 
-  if (!contentLoaded) {
+  if (!enrichingSet) {
     return (
       <LoadContainer>
         <HashLoader size={150} color={"#70D0EF"} />
@@ -106,12 +30,12 @@ function RoomDecoration() {
         <Container>
           <Product>
             <ImageBox>
-              <Img src={contents1.Images[0].url_fullxfull} alt="img" />
+              <Img src={enrichingSet[0].image} alt="img" />
               <Title>Mini Bar</Title>
             </ImageBox>
             <Price>
               <DollarSvg />
-              {contents1.price}
+              {enrichingSet[0].price}
             </Price>
             <Button onClick={() => shopNowHandler(642136027)}>
               Product Details
@@ -119,12 +43,12 @@ function RoomDecoration() {
           </Product>
           <Product>
             <ImageBox>
-              <Img src={contents2.Images[0].url_fullxfull} alt="img" />
+              <Img src={enrichingSet[1].image} alt="img" />
               <Title>Room Lights</Title>
             </ImageBox>
             <Price>
               <DollarSvg />
-              {contents2.price}
+              {enrichingSet[1].price}
             </Price>
             <Button onClick={() => shopNowHandler(935071104)}>
               Product Details
@@ -132,12 +56,12 @@ function RoomDecoration() {
           </Product>
           <Product>
             <ImageBox>
-              <Img src={contents3.Images[0].url_fullxfull} alt="img" />
+              <Img src={enrichingSet[2].image} alt="img" />
               <Title>White Soft Carpet</Title>
             </ImageBox>
             <Price>
               <DollarSvg />
-              {contents3.price}
+              {enrichingSet[2].price}
             </Price>
             <Button onClick={() => shopNowHandler(949303486)}>
               Product Details
@@ -145,25 +69,25 @@ function RoomDecoration() {
           </Product>
           <Product>
             <ImageBox>
-              <Img src={contents4.Images[0].url_fullxfull} alt="img" />
+              <Img src={enrichingSet[3].image} alt="img" />
               <Title>Poufs Square</Title>
             </ImageBox>
             <Price>
               <DollarSvg />
-              {contents4.price}
+              {enrichingSet[3].price}
             </Price>
-            <Button onClick={() => shopNowHandler(973019467)}>
+            <Button onClick={() => shopNowHandler(894696520)}>
               Product Details
             </Button>
           </Product>
           <Product>
             <ImageBox>
-              <Img src={contents5.Images[0].url_fullxfull} alt="img" />
+              <Img src={enrichingSet[4].image} alt="img" />
               <Title>Mini Table</Title>
             </ImageBox>
             <Price>
               <DollarSvg />
-              {contents5.price}
+              {enrichingSet[4].price}
             </Price>
             <Button onClick={() => shopNowHandler(618214338)}>
               Product Details
@@ -171,12 +95,12 @@ function RoomDecoration() {
           </Product>
           <Product>
             <ImageBox>
-              <Img src={contents6.Images[0].url_fullxfull} alt="img" />
+              <Img src={enrichingSet[5].image} alt="img" />
               <Title>Vintage table</Title>
             </ImageBox>
             <Price>
               <DollarSvg />
-              {contents6.price}
+              {enrichingSet[5].price}
             </Price>
             <Button onClick={() => shopNowHandler(880690644)}>
               Product Details

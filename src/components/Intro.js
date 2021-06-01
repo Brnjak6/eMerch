@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { ReactComponent as Flying } from "../img/flying.svg";
+import { ReactComponent as Logo } from "../img/logo.svg";
 
 function Intro() {
   return (
@@ -32,7 +32,7 @@ const Container = styled.div`
   color: ${(props) => props.theme.colors.secondary};
 `;
 
-const LogoSvg = styled(Flying)`
+const LogoSvg = styled(Logo)`
   width: 5rem;
   height: 5rem;
   margin: 5rem;
