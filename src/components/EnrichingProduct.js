@@ -19,7 +19,7 @@ function EnrichingProduct({ data }) {
     setIsImageError(true);
   };
   return (
-    <Product key={Math.random()}>
+    <Product>
       <ImageBox>
         <Img src={data.image} alt="img" onError={() => imageErrorHandler()} />
         <Title>{isImageError ? "Product is not available" : "Mini Bar"}</Title>

@@ -12,6 +12,7 @@ import { SearchPageContext } from "../components/SearchPageContext";
 import DiscoverComponent from "../components/DiscoverComponent";
 import "../components/Navigation.scss";
 import BurgerMenu from "../components/BurgerMenu";
+import { ItemsInCartContext } from "../components/ItemsInCartContext";
 
 function Navigation() {
   const [fixedNav, setfixedNav] = useState(false);
@@ -19,6 +20,7 @@ function Navigation() {
   const [inputData, setInputData] = useContext(InputDataContext);
   const [offset, setOffset] = useContext(OffsetContext);
   const [page, setPage] = useContext(SearchPageContext);
+  const [itemsInCart, setItemsInCart] = useContext(ItemsInCartContext);
   const [category, setCategory] = useState(false);
   const notInitialRender = useRef(false);
   const [burgerActive, setBurgerActive] = useState(false);
@@ -146,7 +148,10 @@ function Navigation() {
             </Discover>
           </Products>
           <ToCart to={"/cart"}>
-            <CartIcon />
+            <CartBox>
+              <CartIcon />
+              <CartItems>{itemsInCart.length}</CartItems>
+            </CartBox>
           </ToCart>
         </RightItems>
         <div className="burger-box" style={{ position: "absolute" }}>
@@ -193,11 +198,13 @@ const Container = styled.div`
 const RightItems = styled.div`
   position: relative;
   width: 20vw;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 `;
 const Dropdown = styled.ul`
   background: ${(props) => props.theme.colors.main};
   color: ${(props) => props.theme.colors.secondary};
-  margin-top: 0.3rem;
   width: fit-content;
   white-space: nowrap;
   display: flex;
@@ -241,10 +248,34 @@ const Discover = styled.div`
 
 const CartIcon = styled(Cart)`
   fill: white;
-  height: 1.6rem;
-  width: 1.6rem;
+  height: 1.9rem;
+  width: 1.9rem;
+`;
+
+const CartItems = styled.div`
+  width: 1.3rem;
+  height: 1.3rem;
+  background: ${(props) => props.theme.colors.secondary};
+  border-radius: 50%;
+  position: absolute;
+  top: 80%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${(props) => props.theme.colors.main};
+`;
+
+const CartBox = styled.div`
+  width: 2.5rem;
+  height: 2.5rem;
+  position: relative;
   cursor: pointer;
   float: right;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const HomeSvg = styled(Home)`
