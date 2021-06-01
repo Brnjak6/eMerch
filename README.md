@@ -42,3 +42,4 @@ conditional rending until data is resolved...
 Big appreciation to "web dev web design" Discord community that is always happy to help. 
 
 Website is responsive
+> Some of the content on the main page is converted to static data for less fetching and faster response
