@@ -365,10 +365,12 @@ const SearchBox = styled.form`
 
   @media only screen and (max-width: 900px) {
     width: 35%;
+    margin-left: 8rem;
   }
 
   @media only screen and (max-width: 460px) {
     width: 50%;
+    margin-left: 6rem;
 
     &:before {
       content: none;

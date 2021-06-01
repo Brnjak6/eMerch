@@ -13,6 +13,7 @@ function Recommended() {
   const [contents1, setContents1] = useState(null);
   const [contents3, setContents3] = useState(null);
   const [category, setCategory] = useState(false);
+
   const [inputData, setInputData] = useContext(InputDataContext);
   const [input, setInput] = useContext(InputContext);
 
@@ -140,7 +141,7 @@ const LoadContainer = styled.div`
 
 const EachSlide = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 92vh;
   position: relative;
   display: flex;
   align-items: center;
@@ -151,6 +152,7 @@ const Img = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
   display: block;
 
   @media only screen and (max-width: 590px) {
