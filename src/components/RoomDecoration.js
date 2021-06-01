@@ -1,20 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
-import { ProductContext } from "../components/ProductContext";
 import HashLoader from "react-spinners/HashLoader";
 import { ReactComponent as Dollar } from "../img/dollar.svg";
 import { enrichingSet } from "./Data";
+import EnrichingProduct from "./EnrichingProduct";
 
 function RoomDecoration() {
-  const [product, setProduct] = useContext(ProductContext);
-  let history = useHistory();
-
-  const shopNowHandler = (data) => {
-    setProduct(data);
-    history.push("/product");
-  };
-
   if (!enrichingSet) {
     return (
       <LoadContainer>
@@ -28,84 +19,9 @@ function RoomDecoration() {
           <MainTitle>Room Enriching Set Of Products</MainTitle>
         </TitleBox>
         <Container>
-          <Product>
-            <ImageBox>
-              <Img src={enrichingSet[0].image} alt="img" />
-              <Title>Mini Bar</Title>
-            </ImageBox>
-            <Price>
-              <DollarSvg />
-              {enrichingSet[0].price}
-            </Price>
-            <Button onClick={() => shopNowHandler(642136027)}>
-              Product Details
-            </Button>
-          </Product>
-          <Product>
-            <ImageBox>
-              <Img src={enrichingSet[1].image} alt="img" />
-              <Title>Room Lights</Title>
-            </ImageBox>
-            <Price>
-              <DollarSvg />
-              {enrichingSet[1].price}
-            </Price>
-            <Button onClick={() => shopNowHandler(935071104)}>
-              Product Details
-            </Button>
-          </Product>
-          <Product>
-            <ImageBox>
-              <Img src={enrichingSet[2].image} alt="img" />
-              <Title>White Soft Carpet</Title>
-            </ImageBox>
-            <Price>
-              <DollarSvg />
-              {enrichingSet[2].price}
-            </Price>
-            <Button onClick={() => shopNowHandler(949303486)}>
-              Product Details
-            </Button>
-          </Product>
-          <Product>
-            <ImageBox>
-              <Img src={enrichingSet[3].image} alt="img" />
-              <Title>Poufs Square</Title>
-            </ImageBox>
-            <Price>
-              <DollarSvg />
-              {enrichingSet[3].price}
-            </Price>
-            <Button onClick={() => shopNowHandler(894696520)}>
-              Product Details
-            </Button>
-          </Product>
-          <Product>
-            <ImageBox>
-              <Img src={enrichingSet[4].image} alt="img" />
-              <Title>Mini Table</Title>
-            </ImageBox>
-            <Price>
-              <DollarSvg />
-              {enrichingSet[4].price}
-            </Price>
-            <Button onClick={() => shopNowHandler(618214338)}>
-              Product Details
-            </Button>
-          </Product>
-          <Product>
-            <ImageBox>
-              <Img src={enrichingSet[5].image} alt="img" />
-              <Title>Vintage table</Title>
-            </ImageBox>
-            <Price>
-              <DollarSvg />
-              {enrichingSet[5].price}
-            </Price>
-            <Button onClick={() => shopNowHandler(880690644)}>
-              Product Details
-            </Button>
-          </Product>
+          {enrichingSet.map((product) => (
+            <EnrichingProduct data={product} />
+          ))}
         </Container>
       </>
     );
