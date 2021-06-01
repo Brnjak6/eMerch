@@ -195,12 +195,7 @@ function fashion() {
             <p>Shop Now</p>
           </ShopNow>
         </Information>
-        <ImageBox
-          variants={slideToRight}
-          initial="hidden"
-          animate={controls}
-          ref={element}
-        >
+        <ImageBox>
           <div className="image-wrapper">
             <Img
               className="image-1"
@@ -237,8 +232,8 @@ const ImageBox = styled(motion.div)`
   padding: 2rem;
 
   @media only screen and (max-width: 900px) {
-    height: 90%;
-    width: 80%;
+    height: 43vh;
+    width: 90%;
     margin: 1rem 0;
     display: flex;
     align-items: center;
@@ -256,8 +251,8 @@ const Information = styled.div`
   width: 60%;
 
   @media only screen and (max-width: 900px) {
-    margin-left: 4rem;
     width: 100%;
+    margin: 3rem 0;
   }
 `;
 const Title = styled.div`
@@ -322,6 +317,10 @@ const ShopNow = styled.div`
 
   &:active {
     transform: translateY(3px);
+  }
+
+  @media only screen and (max-width: 900px) {
+    margin-top: 1.5rem;
   }
 `;
 export default fashion;

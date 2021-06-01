@@ -10,7 +10,9 @@ function ReadMoreModal({ description, closeModal }) {
         <h2 style={{ textAlign: "center", marginTop: "1rem" }}>
           Details by the owner
         </h2>
-        <Pgraph>{description}</Pgraph>
+        <Pgraph>
+          {description.replace(/&#39;/g, "'").replace(/&quot;/g, "'")}
+        </Pgraph>
         <Button onClick={() => closeModal(false)}>Close</Button>
       </Modal>
     </>
@@ -31,6 +33,7 @@ const Modal = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  font-size: 1.2rem;
 
   @media only screen and (max-width: 1200px) {
     width: 70vw;
@@ -65,7 +68,7 @@ const Modal = styled.div`
 
 const Overlay = styled.div`
   position: absolute;
-  height: 200vh;
+  height: 91vh;
   width: 100%;
   background: rgba(0, 0, 0, 0.4);
   z-index: 800;
@@ -73,6 +76,10 @@ const Overlay = styled.div`
   align-items: center;
   justify-content: center;
   overflow: hidden;
+
+  @media only screen and (max-width: 1200px) {
+    height: 200vh;
+  }
 `;
 
 const Pgraph = styled.p`

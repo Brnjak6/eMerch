@@ -198,9 +198,6 @@ const Container = styled.div`
 const RightItems = styled.div`
   position: relative;
   width: 20vw;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
 `;
 const Dropdown = styled.ul`
   background: ${(props) => props.theme.colors.main};
@@ -278,6 +275,15 @@ const CartBox = styled.div`
   justify-content: center;
 `;
 
+const ToCart = styled(Link)`
+  width: fit-content;
+  height: fit-content;
+
+  @media only screen and (max-width: 1200px) {
+    display: none;
+  }
+`;
+
 const HomeSvg = styled(Home)`
   fill: ${(props) => props.theme.colors.secondary};
   height: 1.8rem;
@@ -299,23 +305,16 @@ const HomeBox = styled(Link)`
   left: 0%;
 `;
 
-const ToCart = styled(Link)`
-  width: fit-content;
-  height: fit-content;
-
-  @media only screen and (max-width: 1200px) {
-    display: none;
-  }
-`;
-
 const SearchBtn = styled(Search)`
   width: 1.2rem;
   height: 1.2rem;
   fill: ${(props) => props.theme.colors.secondary};
   position: absolute;
-  top: 20%;
+  top: 50%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+
   opacity: 0.8;
-  right: 0%;
   cursor: pointer;
   z-index: 200;
 `;
@@ -365,7 +364,7 @@ const BorderBottom = styled.div`
 `;
 
 const SearchBox = styled.form`
-  width: 11%;
+  width: 13%;
   height: 6vh;
   position: relative;
   display: flex;
@@ -415,6 +414,7 @@ const SearchBox = styled.form`
 
 const Input = styled.input`
   background: transparent;
+  overflow-x: hidden;
   outline: none;
   border: none;
   caret-color: ${(props) => props.theme.colors.third};

@@ -40,7 +40,7 @@ const Container = styled.div`
     height: 6vh;
   }
 
-  @media only screen and (max-width: 410px) {
+  @media only screen and (max-width: 700px) {
     display: none;
   }
 `;

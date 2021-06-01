@@ -5,6 +5,8 @@ import Line from "../components/RadialLine";
 import { ItemsInCartContext } from "../components/ItemsInCartContext";
 import ProductData from "../components/ProductData";
 import { ReactComponent as Remove } from "../img/delete.svg";
+import { ReactComponent as Basket } from "../img/shopping-basket.svg";
+import { ReactComponent as Sad } from "../img/sad.svg";
 import { motion } from "framer-motion";
 import { pageAnimation } from "../global/Animations";
 
@@ -34,6 +36,22 @@ function Cart() {
       return newItems;
     });
   };
+
+  if (itemsInCart.length === 0) {
+    return (
+      <EmptyContainer>
+        <Header>
+          <h1>Your</h1> <br />
+          <BasketSvg /> <br />
+          <h1>Is Empty</h1> <br />
+          <SadSvg /> <br />
+        </Header>
+        <SecondHeader>
+          <h1>...For Now</h1>
+        </SecondHeader>
+      </EmptyContainer>
+    );
+  }
 
   return (
     <Container variants={pageAnimation} initial="hidden" animate="show">
@@ -204,6 +222,16 @@ const RemoveSvg = styled(Remove)`
   }
 `;
 
+const BasketSvg = styled(Basket)`
+  width: 5rem;
+  height: 5rem;
+`;
+
+const SadSvg = styled(Sad)`
+  width: 5rem;
+  height: 5rem;
+`;
+
 const Information = styled.div`
   display: flex;
   align-items: center;
@@ -244,5 +272,28 @@ const CartTitle = styled.div`
   text-transform: uppercase;
   padding: 0.5rem;
 `;
+
+const EmptyContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 2rem;
+`;
+
+const Header = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const SecondHeader = styled.div``;
 
 export default Cart;

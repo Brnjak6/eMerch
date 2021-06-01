@@ -66,10 +66,10 @@ function SelectedProduct() {
     setReadMore(false);
   };
 
-  const searchByCategory = async (data) => {
+  const searchByCategory = (data) => {
     setInputData("");
-    setInput(data.target.innerHTML);
-    setCategory(data.target.innerHTML);
+    setInput(data.target.innerText);
+    setCategory(data.target.innerText);
   };
 
   useEffect(() => {
@@ -153,7 +153,10 @@ function SelectedProduct() {
               </Materials>
 
               <Description>
-                {fetched.results[0].description.substring(0, 250) + "..."}{" "}
+                {fetched.results[0].description
+                  .substring(0, 250)
+                  .replace(/&#39;/g, "'")
+                  .replace(/&quot;/g, "'") + "..."}{" "}
                 <ReadMore onClick={() => setReadMore(true)}>Read More</ReadMore>
               </Description>
               <Categories>

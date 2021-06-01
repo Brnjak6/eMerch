@@ -6,12 +6,15 @@ import { InputDataContext } from "../components/InputDataContext";
 import { useHistory } from "react-router-dom";
 import { motion } from "framer-motion";
 import { burgerAnimation } from "../global/Animations";
+import { ReactComponent as Cart } from "../img/shopping-cart.svg";
+import { ItemsInCartContext } from "../components/ItemsInCartContext";
 
 function BurgerMenu({ burgerHandler }) {
   const [category, setCategory] = useState(false);
   const [offset, setOffset] = useContext(OffsetContext);
   const [input, setInput] = useContext(InputContext);
   const [inputData, setInputData] = useContext(InputDataContext);
+  const [itemsInCart, setItemsInCart] = useContext(ItemsInCartContext);
   const notInitialRender = useRef(false);
   let history = useHistory();
 
@@ -62,7 +65,12 @@ function BurgerMenu({ burgerHandler }) {
   return (
     <Container variants={burgerAnimation} initial="hidden" animate="show">
       <Ul>
-        <Li onClick={() => redirectToCart()}>Cart</Li>
+        <ToCart onClick={() => redirectToCart()}>
+          <CartBox>
+            <CartIcon />
+            <CartItems>{itemsInCart.length}</CartItems>
+          </CartBox>
+        </ToCart>
         <Li onClick={() => redirectToEditor()}>Editor's Choice</Li>
         <Search onClick={(e) => searchByCategory(e)}>Smart Watches</Search>
         <Search onClick={(e) => searchByCategory(e)}>Car Products</Search>
@@ -145,6 +153,43 @@ const Search = styled.div`
 const Copyright = styled.div`
   text-align: center;
   justify-self: flex-end;
+`;
+
+const CartIcon = styled(Cart)`
+  fill: white;
+  height: 1.9rem;
+  width: 1.9rem;
+`;
+
+const CartItems = styled.div`
+  width: 1.3rem;
+  height: 1.3rem;
+  background: ${(props) => props.theme.colors.secondary};
+  border-radius: 50%;
+  position: absolute;
+  top: 80%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${(props) => props.theme.colors.main};
+`;
+
+const CartBox = styled.div`
+  width: 2.5rem;
+  height: 2.5rem;
+  position: relative;
+  cursor: pointer;
+  float: right;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ToCart = styled.div`
+  width: fit-content;
+  height: fit-content;
 `;
 
 export default BurgerMenu;

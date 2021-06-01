@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 function DiscoverComponent() {
   return (
-    <div style={{ display: "flex", alignItems: "center" }}>
+    <div style={{ display: "flex", alignItems: "center", marginTop: ".4rem" }}>
       DISCOVER <ArrowBtn />
     </div>
   );

@@ -215,14 +215,20 @@ function SearchPage() {
                   <Front>
                     <Title>
                       {res.title.length > 25
-                        ? res.title.substring(0, 25) + "..."
-                        : res.title}
+                        ? res.title
+                            .substring(0, 25)
+                            .replace(/&#39;/g, "'")
+                            .replace(/&quot;/g, "'") + "..."
+                        : res.title
+                            .replace(/&#39;/g, "'")
+                            .replace(/&quot;/g, "'")}
                     </Title>
                     <Img
                       src={res.Images[0].url_fullxfull}
                       alt="img"
                       animation="blurIn"
                       animationDuration=".5s"
+                      placeholderStyle={{ background: "transparent" }}
                     />
                     <Price>${res.price}</Price>
                   </Front>
