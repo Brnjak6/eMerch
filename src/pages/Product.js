@@ -237,8 +237,8 @@ const Image = styled.img`
   height: 88%;
   border-radius: 4px;
 
-  @media only screen and (max-width: 1200px) {
-    width: 95%;
+  @media only screen and (max-width: 1210px) {
+    width: 65%;
   }
 
   @media only screen and (max-width: 700px) {

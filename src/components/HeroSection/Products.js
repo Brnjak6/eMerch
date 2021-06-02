@@ -14,6 +14,7 @@ function Products() {
 
   const shopNowHandler = (data) => {
     setProduct(data);
+    console.log("works");
     history.push("/product");
   };
 
@@ -41,7 +42,13 @@ function Products() {
                 Shop Now
               </Button>
             </Info>
-            <MobileButton>Details</MobileButton>
+            <MobileButton
+              onClick={() => {
+                shopNowHandler(386355698);
+              }}
+            >
+              Details
+            </MobileButton>
           </Product>
           <Product>
             <Img src={pictures[1]} alt="img" />
@@ -56,7 +63,13 @@ function Products() {
                 Shop Now
               </Button>
             </Info>
-            <MobileButton>Details</MobileButton>
+            <MobileButton
+              onClick={() => {
+                shopNowHandler(879403626);
+              }}
+            >
+              Details
+            </MobileButton>
           </Product>
           <Product>
             <Img src={pictures[2]} alt="img" />
@@ -73,7 +86,13 @@ function Products() {
                 Shop Now
               </Button>
             </Info>
-            <MobileButton>Details</MobileButton>
+            <MobileButton
+              onClick={() => {
+                shopNowHandler(495036223);
+              }}
+            >
+              Details
+            </MobileButton>
           </Product>
         </Container>
       </FlexColumn>
@@ -142,6 +161,7 @@ const Img = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  z-index: 5;
 
   @media only screen and (max-width: 1200px) {
     height: 85%;
