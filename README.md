@@ -35,7 +35,8 @@ Some of the technologies you can find in this project are:
    - useHistory
    - localStorage
    - Framer Motion
-    
+
+API data was tested in Postman and search parameteres were implemented.
 Some of the challenges I faced: price sorting in search page, cart pricing while lifting state up in React components,
 conditional rending until data is resolved...
 
