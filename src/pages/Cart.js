@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import CartInfo from "../components/CartInfo";
 import Line from "../components/RadialLine";
-import { ItemsInCartContext } from "../components/ItemsInCartContext";
+import { ItemsInCartContext } from "../components/Contexts/ItemsInCartContext";
 import ProductData from "../components/ProductData";
 import { ReactComponent as Remove } from "../img/delete.svg";
 import { ReactComponent as Basket } from "../img/shopping-basket.svg";

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
-import { ItemsInCartContext } from "../components/ItemsInCartContext";
+import { ItemsInCartContext } from "../components/Contexts/ItemsInCartContext";
 
 function ProductData({ price, id, value }) {
   const [itemsInCart, setItemsInCart] = useContext(ItemsInCartContext);

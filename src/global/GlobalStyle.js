@@ -10,10 +10,9 @@ const GlobalStyle = createGlobalStyle`
     -webkit-tap-highlight-color: transparent;
 }
 
-body {
+body, html {
     min-height: 100vh;
     font-family: 'Work Sans', sans-serif;
-    overflow-x: hidden;
     font-size: 100%;
 
    @media only screen and (max-width: 1200px) {

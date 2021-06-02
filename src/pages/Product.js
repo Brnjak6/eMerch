@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import { ProductContext } from "../components/ProductContext";
+import { ProductContext } from "../components/Contexts/ProductContext";
 import { useHistory } from "react-router-dom";
 import HashLoader from "react-spinners/HashLoader";
 import styled from "styled-components";
 import ReadMoreModal from "../components/ReadMoreModal";
-import { InputContext } from "../components/InputContext";
-import { InputDataContext } from "../components/InputDataContext";
-import { ItemsInCartContext } from "../components/ItemsInCartContext";
+import { InputContext } from "../components/Contexts/InputContext";
+import { InputDataContext } from "../components/Contexts/InputDataContext";
+import { ItemsInCartContext } from "../components/Contexts/ItemsInCartContext";
 import Line from "../components/RadialLine";
 import AlertWindow from "../components/AlertWindow";
 

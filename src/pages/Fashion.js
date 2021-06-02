@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import "../components/SlicedImage.scss";
 import { useHistory } from "react-router-dom";
-import { ProductContext } from "../components/ProductContext";
+import { ProductContext } from "../components/Contexts/ProductContext";
 import HashLoader from "react-spinners/HashLoader";
 import { ReactComponent as Bag } from "../img/shopping-bag.svg";
 import "../components/SlicedImage.scss";

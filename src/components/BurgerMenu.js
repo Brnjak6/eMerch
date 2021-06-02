@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import styled from "styled-components";
-import { OffsetContext } from "../components/OffsetContext";
-import { InputContext } from "../components/InputContext";
-import { InputDataContext } from "../components/InputDataContext";
+import { OffsetContext } from "./Contexts/OffsetContext";
+import { InputContext } from "./Contexts/InputContext";
+import { InputDataContext } from "./Contexts/InputDataContext";
 import { useHistory } from "react-router-dom";
 import { motion } from "framer-motion";
 import { burgerAnimation } from "../global/Animations";
 import { ReactComponent as Cart } from "../img/shopping-cart.svg";
-import { ItemsInCartContext } from "../components/ItemsInCartContext";
+import { ItemsInCartContext } from "./Contexts/ItemsInCartContext";
 
 function BurgerMenu({ burgerHandler }) {
   const [category, setCategory] = useState(false);

@@ -2,16 +2,15 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import { Fade } from "react-slideshow-image";
 import styled from "styled-components";
 import "react-slideshow-image/dist/styles.css";
-import { InputDataContext } from "../InputDataContext";
+import { InputDataContext } from "../Contexts/InputDataContext";
 import { useHistory } from "react-router-dom";
-import { InputContext } from "../InputContext";
+import { InputContext } from "../Contexts/InputContext";
 import HashLoader from "react-spinners/HashLoader";
 import modernArt from "../../img/modernArt.jpg";
 import outdoor from "../../img/outdoor.jpg";
 
 function Recommended() {
   const [contents1, setContents1] = useState(null);
-  const [contents3, setContents3] = useState(null);
   const [category, setCategory] = useState(false);
 
   const [inputData, setInputData] = useContext(InputDataContext);
@@ -30,26 +29,12 @@ function Recommended() {
   );
   const url1 = `https://api.allorigins.win/get?url=${encoded1}`;
 
-  const encoded3 = encodeURIComponent(
-    `https://openapi.etsy.com/v2/listings/957322104?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
-  );
-  const url3 = `https://api.allorigins.win/get?url=${encoded3}`;
-
   useEffect(() => {
     fetch(url1)
       .then((response) => response.json())
       .then((data) => {
         if (data.contents) {
           setContents1(JSON.parse(data.contents));
-        }
-      })
-      .catch(console.error);
-
-    fetch(url3)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.contents) {
-          setContents3(JSON.parse(data.contents));
         }
       })
       .catch(console.error);
@@ -82,7 +67,7 @@ function Recommended() {
     transitionDuration: 500,
   };
 
-  return !contents3 ? (
+  return !contents1 ? (
     <LoadContainer>
       <HashLoader size={150} color={"#42748F"} />
     </LoadContainer>
@@ -94,22 +79,22 @@ function Recommended() {
     >
       <Fade {...properties}>
         <EachSlide>
-          <Img src={contents1?.results[0].Images[0].url_fullxfull} alt="img" />
+          <Img src={modernArt} alt="img" />
           <Overlay />
           <InfoContainer>
-            <Description>Bedding items</Description>
-            <Button onClick={() => searchByCategory("bedroom")}>
+            <Description>Modern Art</Description>
+            <Button onClick={() => searchByCategory("modern art")}>
               Shop now
             </Button>
             <p>TRENDING THIS WEEK</p>
           </InfoContainer>
         </EachSlide>
         <EachSlide>
-          <Img src={modernArt} alt="img" />
+          <Img src={contents1?.results[0].Images[0].url_fullxfull} alt="img" />
           <Overlay />
           <InfoContainer>
-            <Description>Modern Art</Description>
-            <Button onClick={() => searchByCategory("modern art")}>
+            <Description>Bedding items</Description>
+            <Button onClick={() => searchByCategory("bedroom")}>
               Shop now
             </Button>
             <p>TRENDING THIS WEEK</p>

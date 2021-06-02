@@ -5,14 +5,14 @@ import styled from "styled-components";
 import { ReactComponent as Search } from "../img/search.svg";
 import { ReactComponent as Cart } from "../img/shopping-cart.svg";
 import { ReactComponent as Home } from "../img/home.svg";
-import { InputDataContext } from "../components/InputDataContext";
-import { OffsetContext } from "../components/OffsetContext";
-import { InputContext } from "../components/InputContext";
-import { SearchPageContext } from "../components/SearchPageContext";
+import { InputDataContext } from "../components/Contexts/InputDataContext";
+import { OffsetContext } from "../components/Contexts/OffsetContext";
+import { InputContext } from "../components/Contexts/InputContext";
+import { SearchPageContext } from "../components/Contexts/SearchPageContext";
 import DiscoverComponent from "../components/DiscoverComponent";
 import "../components/Navigation.scss";
 import BurgerMenu from "../components/BurgerMenu";
-import { ItemsInCartContext } from "../components/ItemsInCartContext";
+import { ItemsInCartContext } from "../components/Contexts/ItemsInCartContext";
 
 function Navigation() {
   const [fixedNav, setfixedNav] = useState(false);
@@ -399,8 +399,8 @@ const SearchBox = styled.form`
   }
 
   @media only screen and (max-width: 460px) {
-    width: 50%;
-    margin-left: 6rem;
+    width: 60%;
+    margin-left: 2rem;
 
     &:before {
       content: none;

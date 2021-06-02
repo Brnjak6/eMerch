@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { ProductContext } from "../components/ProductContext";
+import { ProductContext } from "./Contexts/ProductContext";
 import styled from "styled-components";
 import { ReactComponent as Dollar } from "../img/dollar.svg";
 

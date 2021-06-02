@@ -26,10 +26,13 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-
   font-family: "Rhodium Libre", serif;
   background: ${(props) => props.theme.colors.main};
   color: ${(props) => props.theme.colors.secondary};
+
+  @media only screen and (max-width: 450px) {
+    font-size: 1.4rem;
+  }
 `;
 
 const LogoSvg = styled(Logo)`

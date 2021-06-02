@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { ReactComponent as Arrow } from "../../img/down-arrow.svg";
 import { useHistory } from "react-router-dom";
-import { ProductContext } from "../ProductContext";
+import { ProductContext } from "../Contexts/ProductContext";
 function Products() {
   const [product, setProduct] = useContext(ProductContext);
   const [pictures, setPictures] = useState([
