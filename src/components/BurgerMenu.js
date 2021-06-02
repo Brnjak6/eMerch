@@ -116,6 +116,7 @@ const Li = styled.li`
   font-size: 1.7rem;
   transition: 0.2s;
   text-decoration: none;
+  cursor: pointer;
   color: ${(props) => props.theme.colors.secondary};
 
   &:active {
@@ -139,6 +140,7 @@ const Search = styled.div`
   margin: 2.3rem 0;
   font-size: 1.7rem;
   transition: 0.2s;
+  cursor: pointer;
   color: ${(props) => props.theme.colors.secondary};
 
   &:active {

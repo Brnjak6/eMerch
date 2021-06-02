@@ -27,25 +27,27 @@ function App() {
             <SearchPageProvider>
               <ProductProvider>
                 <OffsetProvider>
-                  <Banner />
-                  <Navigation />
-                  <Switch>
-                    <Route path="/" exact>
-                      <Main />
-                    </Route>
-                    <Route path="/search">
-                      <SearchPage />
-                    </Route>
-                    <Route path="/product">
-                      <Product />
-                    </Route>
-                    <Route path="/cart">
-                      <Cart />
-                    </Route>
-                    <Route path="/fashion">
-                      <Fashion />
-                    </Route>
-                  </Switch>
+                  <div style={{ overflowX: "hidden" }}>
+                    <Banner />
+                    <Navigation />
+                    <Switch>
+                      <Route path="/" exact>
+                        <Main />
+                      </Route>
+                      <Route path="/search">
+                        <SearchPage />
+                      </Route>
+                      <Route path="/product">
+                        <Product />
+                      </Route>
+                      <Route path="/cart">
+                        <Cart />
+                      </Route>
+                      <Route path="/fashion">
+                        <Fashion />
+                      </Route>
+                    </Switch>
+                  </div>
                 </OffsetProvider>
               </ProductProvider>
             </SearchPageProvider>

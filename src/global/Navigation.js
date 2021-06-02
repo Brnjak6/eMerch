@@ -393,22 +393,27 @@ const SearchBox = styled.form`
     background: linear-gradient(to left, transparent 30%, #42748f);
   }
 
-  @media only screen and (max-width: 900px) {
-    width: 35%;
-    margin-left: 8rem;
-  }
-
-  @media only screen and (max-width: 460px) {
-    width: 60%;
+  @media only screen and (max-width: 1200px) {
+    width: 20%;
     margin-left: 2rem;
 
     &:before {
-      content: none;
+      display: none;
     }
 
     &:after {
-      content: none;
+      display: none;
     }
+  }
+
+  @media only screen and (max-width: 900px) {
+    width: 35%;
+    margin-left: 3rem;
+  }
+
+  @media only screen and (max-width: 450px) {
+    width: 45%;
+    margin-left: 3rem;
   }
 `;
 

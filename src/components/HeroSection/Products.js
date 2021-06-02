@@ -118,9 +118,9 @@ const Product = styled.div`
   }
 
   @media only screen and (max-width: 550px) {
-    width: 95%;
-    height: 70vh;
-    margin: 0;
+    width: 90%;
+    height: 40vh;
+    margin: 0.8rem 0;
   }
 `;
 
