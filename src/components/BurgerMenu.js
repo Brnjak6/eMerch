@@ -185,6 +185,10 @@ const CartBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media only screen and (max-width: 450px) {
+    margin: 1rem 0;
+  }
 `;
 
 const ToCart = styled.div`

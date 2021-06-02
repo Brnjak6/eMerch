@@ -70,6 +70,7 @@ function SelectedProduct() {
     setInputData("");
     setInput(data.target.innerText);
     setCategory(data.target.innerText);
+    window.scroll({ top: 0, behavior: "smooth" });
   };
 
   useEffect(() => {

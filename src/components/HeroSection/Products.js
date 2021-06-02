@@ -120,6 +120,7 @@ const Product = styled.div`
   @media only screen and (max-width: 550px) {
     width: 95%;
     height: 70vh;
+    margin: 0;
   }
 `;
 

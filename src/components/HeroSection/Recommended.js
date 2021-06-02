@@ -75,6 +75,7 @@ function Recommended() {
     <div
       style={{
         boxShadow: "0px 4px 10px 0px #000000",
+        overflowX: "hidden",
       }}
     >
       <Fade {...properties}>
