@@ -22,7 +22,7 @@ function EnrichingProduct({ data }) {
     <Product>
       <ImageBox>
         <Img src={data.image} alt="img" onError={() => imageErrorHandler()} />
-        <Title>{isImageError ? "Product is not available" : "Mini Bar"}</Title>
+        <Title>{isImageError ? "Product is not available" : data.name}</Title>
       </ImageBox>
       <Price>
         <DollarSvg />

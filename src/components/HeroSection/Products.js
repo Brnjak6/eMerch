@@ -14,7 +14,6 @@ function Products() {
 
   const shopNowHandler = (data) => {
     setProduct(data);
-    console.log("works");
     history.push("/product");
   };
 
