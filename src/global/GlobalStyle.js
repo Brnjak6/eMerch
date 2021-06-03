@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
 }
 
 body, html {
-    min-height: 100vh;
+
     font-family: 'Work Sans', sans-serif;
     font-size: 100%;
 

@@ -87,7 +87,6 @@ function Cart() {
 }
 
 const Container = styled(motion.div)`
-  height: 85vh;
   display: grid;
   background: ${(props) => props.theme.colors.secondary};
   grid-template-columns:
