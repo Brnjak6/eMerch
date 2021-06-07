@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-import htmlbg from "../img/htmlbg.svg";
 
 const GlobalStyle = createGlobalStyle`
 

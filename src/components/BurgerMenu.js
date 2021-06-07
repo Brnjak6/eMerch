@@ -28,6 +28,10 @@ function BurgerMenu({ burgerHandler }) {
     history.push("/search");
     setInput(data.target.innerHTML);
     setCategory(data.target.innerHTML);
+
+    setTimeout(() => {
+      burgerHandler();
+    }, 300);
   };
 
   const redirectToCart = () => {

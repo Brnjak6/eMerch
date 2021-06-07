@@ -28,7 +28,7 @@ function EnrichingProduct({ data }) {
         <DollarSvg />
         {isImageError ? "/" : data.price}
       </Price>
-      <Button onClick={() => (isImageError ? null : shopNowHandler(642136027))}>
+      <Button onClick={() => (isImageError ? null : shopNowHandler(data.id))}>
         {isImageError ? "Not available" : "Product Details"}
       </Button>
     </Product>
