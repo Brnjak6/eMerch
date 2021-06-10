@@ -412,7 +412,7 @@ const SearchBox = styled.form`
   }
 
   @media only screen and (max-width: 450px) {
-    width: 45%;
+    width: 65%;
     margin-left: 3rem;
   }
 `;

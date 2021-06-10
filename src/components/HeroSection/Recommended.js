@@ -5,9 +5,9 @@ import "react-slideshow-image/dist/styles.css";
 import { InputDataContext } from "../Contexts/InputDataContext";
 import { useHistory } from "react-router-dom";
 import { InputContext } from "../Contexts/InputContext";
-import HashLoader from "react-spinners/HashLoader";
 import modernArt from "../../img/modernArt.jpg";
 import outdoor from "../../img/outdoor.jpg";
+import bedding from "../../img/bedding.jpg";
 
 function Recommended() {
   const [category, setCategory] = useState(false);
@@ -64,6 +64,17 @@ function Recommended() {
     >
       <Fade {...properties}>
         <EachSlide>
+          <Img src={bedding} alt="img" />
+          <Overlay />
+          <InfoContainer>
+            <Description>Bedroom Products</Description>
+            <Button onClick={() => searchByCategory("bedroom")}>
+              Shop now
+            </Button>
+            <p>TRENDING THIS WEEK</p>
+          </InfoContainer>
+        </EachSlide>
+        <EachSlide>
           <Img src={modernArt} alt="img" />
           <Overlay />
           <InfoContainer>
@@ -74,7 +85,6 @@ function Recommended() {
             <p>TRENDING THIS WEEK</p>
           </InfoContainer>
         </EachSlide>
-
         <EachSlide>
           <Img src={outdoor} alt="img" />
           <Overlay />
@@ -103,7 +113,7 @@ const EachSlide = styled.div`
 const Img = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: fill;
   object-position: top;
   display: block;
 
@@ -144,6 +154,7 @@ const Overlay = styled.div`
 const Description = styled.h2`
   font-size: 1.8rem;
   font-weight: lighter;
+  text-transform: uppercase;
 `;
 
 const Button = styled.button`
