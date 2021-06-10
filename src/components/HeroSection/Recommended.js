@@ -10,7 +10,6 @@ import modernArt from "../../img/modernArt.jpg";
 import outdoor from "../../img/outdoor.jpg";
 
 function Recommended() {
-  const [contents1, setContents1] = useState(null);
   const [category, setCategory] = useState(false);
 
   const [inputData, setInputData] = useContext(InputDataContext);
@@ -28,17 +27,6 @@ function Recommended() {
     `https://openapi.etsy.com/v2/listings/465354376?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
   );
   const url1 = `https://api.allorigins.win/get?url=${encoded1}`;
-
-  useEffect(() => {
-    fetch(url1)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.contents) {
-          setContents1(JSON.parse(data.contents));
-        }
-      })
-      .catch(console.error);
-  }, []);
 
   const searchByCategory = (data) => {
     setInputData("");
@@ -67,11 +55,7 @@ function Recommended() {
     transitionDuration: 500,
   };
 
-  return !contents1 ? (
-    <LoadContainer>
-      <HashLoader size={150} color={"#42748F"} />
-    </LoadContainer>
-  ) : (
+  return (
     <div
       style={{
         boxShadow: "0px 4px 10px 0px #000000",
@@ -90,17 +74,7 @@ function Recommended() {
             <p>TRENDING THIS WEEK</p>
           </InfoContainer>
         </EachSlide>
-        <EachSlide>
-          <Img src={contents1?.results[0].Images[0].url_fullxfull} alt="img" />
-          <Overlay />
-          <InfoContainer>
-            <Description>Bedding items</Description>
-            <Button onClick={() => searchByCategory("bedroom")}>
-              Shop now
-            </Button>
-            <p>TRENDING THIS WEEK</p>
-          </InfoContainer>
-        </EachSlide>
+
         <EachSlide>
           <Img src={outdoor} alt="img" />
           <Overlay />
@@ -116,14 +90,6 @@ function Recommended() {
     </div>
   );
 }
-
-const LoadContainer = styled.div`
-  width: 100vw;
-  height: 85vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
 
 const EachSlide = styled.div`
   width: 100vw;
