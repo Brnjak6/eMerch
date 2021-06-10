@@ -295,10 +295,6 @@ const ShopBagSvg = styled(Bag)`
   height: 3vh;
   margin-right: 1rem;
   transition: 3;
-
-  &:hover {
-    fill: ${(props) => props.theme.colors.third};
-  }
 `;
 
 const ShopNow = styled.div`
@@ -309,10 +305,16 @@ const ShopNow = styled.div`
   background: rgba(0, 0, 0, 0.12);
   clip-path: polygon(13% 0, 100% 0, 87% 100%, 0 100%);
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.3s;
 
   &:hover {
     transform: translateY(-1px);
+    ${ShopBagSvg} {
+      fill: ${(props) => props.theme.colors.third};
+    }
+    p {
+      color: ${(props) => props.theme.colors.third};
+    }
   }
 
   &:active {

@@ -19,7 +19,6 @@ function SelectedProduct() {
   const [inputData, setInputData] = useContext(InputDataContext);
   const [itemsInCart, setItemsInCart] = useContext(ItemsInCartContext);
   const [category, setCategory] = useState(false);
-  const [error, setError] = useState(null);
   const notInitialRender = useRef(false);
   const [alertMessage, setAlertMessage] = useState("");
   let history = useHistory();
@@ -121,10 +120,6 @@ function SelectedProduct() {
         <HashLoader size={150} color={"#42748F"} />
       </LoadContainer>
     );
-  } else if (error) {
-    <LoadContainer>
-      <h1>{error}</h1>
-    </LoadContainer>;
   } else {
     return (
       <Container>
