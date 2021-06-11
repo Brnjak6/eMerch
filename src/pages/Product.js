@@ -82,7 +82,7 @@ function SelectedProduct() {
             setInputData(JSON.parse(data.contents));
           }
         })
-        .catch(console.error && setError(error));
+        .catch(console.error);
     } else {
       notInitialRender.current = true;
     }

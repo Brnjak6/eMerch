@@ -305,7 +305,7 @@ const ShopNow = styled.div`
   background: rgba(0, 0, 0, 0.12);
   clip-path: polygon(13% 0, 100% 0, 87% 100%, 0 100%);
   cursor: pointer;
-  transition: all 0.3s;
+  transition: 0.3s;
 
   &:hover {
     transform: translateY(-1px);
