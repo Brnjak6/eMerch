@@ -209,45 +209,49 @@ function SearchPage() {
           animate="show"
         >
           {inputData.results.map((res) => {
-            return (
-              <ItemArea key={res.listing_id}>
-                <ItemBox>
-                  <Front>
-                    <Title>
-                      {res.title.length > 25
-                        ? res.title
-                            .substring(0, 25)
-                            .replace(/&#39;/g, "'")
-                            .replace(/&quot;/g, "'") + "..."
-                        : res.title
-                            .replace(/&#39;/g, "'")
-                            .replace(/&quot;/g, "'")}
-                    </Title>
-                    <Img
-                      src={res.Images[0].url_fullxfull}
-                      alt="img"
-                      animation="blurIn"
-                      animationDuration=".5s"
-                      placeholderStyle={{ background: "transparent" }}
-                    />
-                    <Price>${res.price}</Price>
-                  </Front>
-                  <Hover>
-                    <Button
-                      onClick={() => {
-                        setProduct(res.listing_id), history.push("/product");
-                      }}
-                    >
-                      Details
-                    </Button>
-                  </Hover>
-                </ItemBox>
-                <Views>
-                  <ViewsSvg />
-                  <span style={{ fontWeight: "bold" }}>{res.views}</span>
-                </Views>
-              </ItemArea>
-            );
+            if (!res) {
+              return <ItemArea>Product not available</ItemArea>;
+            } else {
+              return (
+                <ItemArea key={res.listing_id}>
+                  <ItemBox>
+                    <Front>
+                      <Title>
+                        {res.title.length > 25
+                          ? res.title
+                              .substring(0, 25)
+                              .replace(/&#39;/g, "'")
+                              .replace(/&quot;/g, "'") + "..."
+                          : res.title
+                              .replace(/&#39;/g, "'")
+                              .replace(/&quot;/g, "'")}
+                      </Title>
+                      <Img
+                        src={res ? res.Images[0].url_fullxfull : null}
+                        alt="img"
+                        animation="blurIn"
+                        animationDuration=".5s"
+                        placeholderStyle={{ background: "transparent" }}
+                      />
+                      <Price>${res.price}</Price>
+                    </Front>
+                    <Hover>
+                      <Button
+                        onClick={() => {
+                          setProduct(res.listing_id), history.push("/product");
+                        }}
+                      >
+                        Details
+                      </Button>
+                    </Hover>
+                  </ItemBox>
+                  <Views>
+                    <ViewsSvg />
+                    <span style={{ fontWeight: "bold" }}>{res.views}</span>
+                  </Views>
+                </ItemArea>
+              );
+            }
           })}
           <Pagination>
             <LeftArrowSvg
