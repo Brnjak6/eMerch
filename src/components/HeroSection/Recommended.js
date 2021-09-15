@@ -11,7 +11,6 @@ import bedding from "../../img/bedding.jpg";
 
 function Recommended() {
   const [category, setCategory] = useState(false);
-
   const [inputData, setInputData] = useContext(InputDataContext);
   const [input, setInput] = useContext(InputContext);
 

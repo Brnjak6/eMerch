@@ -7,11 +7,11 @@ export const enrichingSet = [
     price: "3672.98",
   },
   {
-    id: 899532951,
+    id: 947735735,
     name: "Room Lights",
     image:
-      "https://i.etsystatic.com/27368921/r/il/8662d4/3123505109/il_fullxfull.3123505109_i1yc.jpg",
-    price: "39.99",
+      "https://i.etsystatic.com/23093901/r/il/ee6488/2814477750/il_794xN.2814477750_20w4.jpg",
+    price: "17.95",
   },
   {
     id: 949303486,
