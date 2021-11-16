@@ -30,11 +30,11 @@ function fashion() {
   );
   const url2 = `https://api.allorigins.win/get?url=${encoded2}`;
   const encoded3 = encodeURIComponent(
-    `https://openapi.etsy.com/v2/listings/561330325?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
+    `https://openapi.etsy.com/v2/listings/538864635?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
   );
   const url3 = `https://api.allorigins.win/get?url=${encoded3}`;
   const encoded4 = encodeURIComponent(
-    `https://openapi.etsy.com/v2/listings/524890176?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
+    `https://openapi.etsy.com/v2/listings/973951494?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
   );
   const url4 = `https://api.allorigins.win/get?url=${encoded4}`;
 
@@ -156,7 +156,7 @@ function fashion() {
       <Section>
         <Information>
           <Title>{contents3.results[0].title.replace(/,/g, "/")}</Title>
-          <ShopNow onClick={() => shopNowHandler(561330325)}>
+          <ShopNow onClick={() => shopNowHandler(538864635)}>
             <ShopBagSvg />
             <p>Shop Now</p>
           </ShopNow>
@@ -190,7 +190,7 @@ function fashion() {
       <Section style={{ flexDirection: "row-reverse" }}>
         <Information>
           <Title>{contents4.results[0].title}</Title>
-          <ShopNow onClick={() => shopNowHandler(524890176)}>
+          <ShopNow onClick={() => shopNowHandler(973951494)}>
             <ShopBagSvg />
             <p>Shop Now</p>
           </ShopNow>
