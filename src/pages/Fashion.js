@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
-import styled from "styled-components";
-import "../components/SlicedImage.scss";
-import { useHistory } from "react-router-dom";
-import { ProductContext } from "../components/Contexts/ProductContext";
-import HashLoader from "react-spinners/HashLoader";
-import { ReactComponent as Bag } from "../img/shopping-bag.svg";
-import "../components/SlicedImage.scss";
-import { motion } from "framer-motion";
-import { pageAnimation, slideToLeft, slideToRight } from "../global/Animations";
-import { useScroll } from "../global/useScroll";
+import React, { useState, useEffect, useContext } from 'react';
+import styled from 'styled-components';
+import '../components/SlicedImage.scss';
+import { useHistory } from 'react-router-dom';
+import { ProductContext } from '../components/Contexts/ProductContext';
+import HashLoader from 'react-spinners/HashLoader';
+import { ReactComponent as Bag } from '../img/shopping-bag.svg';
+import '../components/SlicedImage.scss';
+import { motion } from 'framer-motion';
+import { pageAnimation, slideToLeft, slideToRight } from '../global/Animations';
+import { useScroll } from '../global/useScroll';
 
 function fashion() {
   const [contents1, setContents1] = useState(null);
@@ -26,7 +26,7 @@ function fashion() {
   const url1 = `https://api.allorigins.win/get?url=${encoded1}`;
 
   const encoded2 = encodeURIComponent(
-    `https://openapi.etsy.com/v2/listings/1021318141?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
+    `https://openapi.etsy.com/v2/listings/816723680?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
   );
   const url2 = `https://api.allorigins.win/get?url=${encoded2}`;
   const encoded3 = encodeURIComponent(
@@ -77,7 +77,7 @@ function fashion() {
 
   const shopNowHandler = (data) => {
     setProduct(data);
-    history.push("/product");
+    history.push('/product');
   };
 
   useEffect(() => {
@@ -89,7 +89,7 @@ function fashion() {
   if (!contentLoaded) {
     return (
       <LoadContainer>
-        <HashLoader size={150} color={"#42748F"} />
+        <HashLoader size={150} color={'#42748F'} />
       </LoadContainer>
     );
   }
@@ -97,7 +97,7 @@ function fashion() {
     <Container variants={pageAnimation} initial="hidden" animate="show">
       <Section>
         <Information>
-          <Title>{contents1.results[0].title.replace(/,/g, "/")}</Title>
+          <Title>{contents1.results[0].title.replace(/,/g, '/')}</Title>
           <ShopNow onClick={() => shopNowHandler(278845428)}>
             <ShopBagSvg />
             <p>Shop Now</p>
@@ -124,9 +124,9 @@ function fashion() {
           </div>
         </ImageBox>
       </Section>
-      <Section style={{ flexDirection: "row-reverse" }}>
+      <Section style={{ flexDirection: 'row-reverse' }}>
         <Information>
-          <Title>{contents2.results[0].title.replace(/,/g, "/")}</Title>
+          <Title>{contents2.results[0].title.replace(/,/g, '/')}</Title>
           <ShopNow onClick={() => shopNowHandler(1021318141)}>
             <ShopBagSvg />
             <p>Shop Now</p>
@@ -155,7 +155,7 @@ function fashion() {
       </Section>
       <Section>
         <Information>
-          <Title>{contents3.results[0].title.replace(/,/g, "/")}</Title>
+          <Title>{contents3.results[0].title.replace(/,/g, '/')}</Title>
           <ShopNow onClick={() => shopNowHandler(538864635)}>
             <ShopBagSvg />
             <p>Shop Now</p>
@@ -187,7 +187,7 @@ function fashion() {
           </div>
         </ImageBox>
       </Section>
-      <Section style={{ flexDirection: "row-reverse" }}>
+      <Section style={{ flexDirection: 'row-reverse' }}>
         <Information>
           <Title>{contents4.results[0].title}</Title>
           <ShopNow onClick={() => shopNowHandler(973951494)}>

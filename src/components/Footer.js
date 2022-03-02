@@ -1,10 +1,10 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 function Footer() {
   return (
     <Container>
-      {" "}
-      DISCLAIMER: This is frontent project made with help of Etsy.com's api data{" "}
+      {' '}
+      DISCLAIMER: This is frontent project made with help of Etsy.com's api data{' '}
       <br />© Copyright 2021 OPTIC
     </Container>
   );

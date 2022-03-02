@@ -1,26 +1,26 @@
-import React, { useState, useEffect, useContext } from "react";
-import styled from "styled-components";
-import { ReactComponent as Arrow } from "../../img/down-arrow.svg";
-import { useHistory } from "react-router-dom";
-import { ProductContext } from "../Contexts/ProductContext";
+import React, { useState, useEffect, useContext } from 'react';
+import styled from 'styled-components';
+import { ReactComponent as Arrow } from '../../img/down-arrow.svg';
+import { useHistory } from 'react-router-dom';
+import { ProductContext } from '../Contexts/ProductContext';
 function Products() {
   const [product, setProduct] = useContext(ProductContext);
   const [pictures, setPictures] = useState([
-    "https://i.etsystatic.com/13194988/r/il/be203f/2203585815/il_fullxfull.2203585815_6dej.jpg",
-    "https://i.etsystatic.com/24161085/r/il/23856d/2665246867/il_fullxfull.2665246867_9r3c.jpg",
-    "https://i.etsystatic.com/11863176/r/il/ade0f7/1140350551/il_fullxfull.1140350551_441s.jpg",
+    'https://i.etsystatic.com/13194988/r/il/be203f/2203585815/il_fullxfull.2203585815_6dej.jpg',
+    'https://i.etsystatic.com/31392103/r/il/5640a7/3477162869/il_794xN.3477162869_en03.jpg',
+    'https://i.etsystatic.com/11863176/r/il/ade0f7/1140350551/il_fullxfull.1140350551_441s.jpg',
   ]);
   let history = useHistory();
 
   const shopNowHandler = (data) => {
     setProduct(data);
-    history.push("/product");
+    history.push('/product');
   };
 
   if (!pictures) {
     return (
       <LoadContainer>
-        <HashLoader size={150} color={"#70D0EF"} />
+        <HashLoader size={150} color={'#70D0EF'} />
       </LoadContainer>
     );
   } else
@@ -53,10 +53,10 @@ function Products() {
             <Img src={pictures[1]} alt="img" />
             <Info>
               <ArrowSvg />
-              <Description>Retro Steampunk Glasses</Description>
+              <Description>New Job Gift For Him</Description>
               <Button
                 onClick={() => {
-                  shopNowHandler(879403626);
+                  shopNowHandler(1082250378);
                 }}
               >
                 Shop Now
@@ -149,7 +149,7 @@ const Title = styled.h1`
   font-size: 2rem;
   margin: 5rem 0;
   text-transform: uppercase;
-  font-family: "Rhodium Libre", serif;
+  font-family: 'Rhodium Libre', serif;
 
   @media only screen and (max-width: 500px) {
     font-size: 1.8rem;
@@ -234,7 +234,7 @@ const Button = styled.button`
   margin: 2rem 0;
   width: fit-content;
   align-self: center;
-  font-family: "Rhodium Libre", serif;
+  font-family: 'Rhodium Libre', serif;
   font-size: 0.9rem;
 
   &:hover {
@@ -263,7 +263,7 @@ const MobileButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Rhodium Libre", serif;
+  font-family: 'Rhodium Libre', serif;
 
   text-align: center;
   transition: 0.2s;
