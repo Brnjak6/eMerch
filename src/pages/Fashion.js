@@ -127,7 +127,7 @@ function fashion() {
       <Section style={{ flexDirection: 'row-reverse' }}>
         <Information>
           <Title>{contents2.results[0].title.replace(/,/g, '/')}</Title>
-          <ShopNow onClick={() => shopNowHandler(1021318141)}>
+          <ShopNow onClick={() => shopNowHandler(518514766)}>
             <ShopBagSvg />
             <p>Shop Now</p>
           </ShopNow>
