@@ -26,7 +26,7 @@ function fashion() {
   const url1 = `https://api.allorigins.win/get?url=${encoded1}`;
 
   const encoded2 = encodeURIComponent(
-    `https://openapi.etsy.com/v2/listings/816723680?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
+    `https://openapi.etsy.com/v2/listings/518514766?api_key=${process.env.REACT_APP_ESHOP_KEY}&includes=Images`
   );
   const url2 = `https://api.allorigins.win/get?url=${encoded2}`;
   const encoded3 = encodeURIComponent(
