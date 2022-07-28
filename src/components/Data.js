@@ -1,10 +1,10 @@
 export const enrichingSet = [
   {
-    id: 642136027,
-    name: 'Mini Bar',
+    id: 1163797609,
+    name: 'Mini Wall Bar,',
     image:
-      'https://i.etsystatic.com/17518176/r/il/243312/3154434473/il_fullxfull.3154434473_4qjk.jpg',
-    price: '3672.98',
+      'https://i.etsystatic.com/24160912/r/il/01c9c4/3657992465/il_fullxfull.3657992465_t6ti.jpg',
+    price: '168.87',
   },
   {
     id: 947735735,
